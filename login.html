@@ -9,7 +9,12 @@
 
     <link rel="stylesheet" href="css/style.css" type="text/css" />
       
-
+ <script type="text/javascript">
+   document.getElementById("myButton").onclick = function () {
+        location.href = "www.yoursite.com";
+    };
+   
+ </script>
   </head>
 
   <body id="bg-img">
@@ -19,9 +24,9 @@
       <h1>Welcome to Store Manager </h1><br>
 
       <form>
-        <input type="text" name="user" placeholder="Username" required>
-        <input type="password" name="pass" placeholder="Password" required>
-        <input type="submit" name="login" class="login login-submit" value="login">
+        <input type="text" name="user" placeholder="Username" id = "user" required>
+        <input type="password" name="pass" placeholder="Password" id ="pwd" required>
+        <input type="submit" name="login" class="login login-submit" id="myButton" value="login">
       </form>
 
       <div class="login-help">
