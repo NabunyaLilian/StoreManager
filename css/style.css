@@ -394,3 +394,12 @@ header li a:hover:not(.active){
   text-align: center;
 
 }
+
+
+/*my cart*/
+#my_cart{
+
+  margin-left: 135px; 
+  margin-bottom: 0px;
+  width:30%;
+}
