@@ -403,3 +403,12 @@ header li a:hover:not(.active){
   margin-bottom: 0px;
   width:30%;
 }
+
+#value{
+
+  background:#b51e0a;
+  border-radius: 50%;
+  border: 1px;
+  width:1px;
+  margin-right: 3px;
+}
