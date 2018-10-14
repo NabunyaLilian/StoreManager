@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Cart</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<header> 
+  <div>
+  <ul>
+  <a href="store_attendant_index.html"><img  src = "img/logo.png" style="float: left;position: relative;height:10px ;height :45px;"></a>
+  <li><a href="store_attendant_index.html">Products</a></li>
+  <li><a  class="active" href="#"><button id="value">2</button>My Cart</a></li>
+  <li><a href="create_sales.html">Sales</a></li>
+  <li style="float:right"><a href="login.html">Log out</a></li>
+ </div>
+  </ul>
+</header>
+  <h1 id = 'heading'>My cart</h1> 
+<section>
+ <form id="my_cart">
+  <input type="text" placeholder="Search Product" name="search">
+  <!-- <input type ="image" src="search.png" alt = 'submit' width="30" height="30" name="search-button"> -->
+ </form> 
+ <table>
+  <tr>
+    <th>Name</th>
+    <th>Quantity</th>
+    <th>Price</th>
+    <th>Minimum Quantity</th>
+    <th>Options</th>
+  </tr>
+  <tr>
+    <td>Laptops</td>
+    <td>50</td>
+    <td>$500</td>
+    <td>10</td>
+    <td><button id="modalBtn" class="button">Sell Product</button></td>
+  </tr>
+
+
+  <!-- The Modal for adding to cart-->
+<div id="simpleModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="closeBtn">&times;</span>
+      <h2>Sell a product</h2>
+    </div>
+    <div class="modal-body">
+      <form>
+        <input type="text" name="name" placeholder="Name" required> <br>
+        <input type="text" name="quantity" placeholder="Quantity"> <br>
+        <input type="text" name="price" placeholder="Price" required> <br>
+        <input type="submit" name="add_product" value="Add to Cart">
+      </form>
+
+    </div>
+    <div class="modal-footer">
+      
+    </div>
+  </div>
+
+</div> 
+<script src="js/myscript.js"></script> 
+
+</body>
+</html>
