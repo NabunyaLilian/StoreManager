@@ -1,3 +1,3 @@
-from main.model import ProductList,api
+from main.model import Sale,api
 
-api.add_resource(ProductList, '/api/v1/product/<string:name>')
+api.add_resource(Sale, '/api/v1/sale/<string:name>')
