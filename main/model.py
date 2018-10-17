@@ -6,9 +6,7 @@ products = []
 sales = []
 
 class Sale(Resource):
-    def get(self, name):
-        for sale in sales:
-            if sale['name'] == name:
-                return sale
-        return {'sale': None}, 404       
-    
+    def post(self, name):
+        sale = {'name':name,'quantity':30,'price':500000,'date':'16/10/2018','store_attendant':'John'}
+        sales.append(sale)
+        return sale ,201    
