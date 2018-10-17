@@ -5,8 +5,6 @@ api = Api(app)
 products = []
 sales = []
 
-class Sale(Resource):
-    def post(self, name):
-        sale = {'name':name,'quantity':30,'price':500000,'date':'16/10/2018','store_attendant':'John'}
-        sales.append(sale)
-        return sale ,201    
+class Sales(Resource):
+    def get(self):
+        return {'sales':sales}
