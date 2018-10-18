@@ -5,10 +5,6 @@ api = Api(app)
 products = []
 sales = []
 
-class Sale(Resource):
-    def get(self, name):
-        for sale in sales:
-            if sale['name'] == name:
-                return sale
-        return {'sale': None}, 404       
-    
+class Sales(Resource):
+    def get(self):
+        return {'sales':sales}
