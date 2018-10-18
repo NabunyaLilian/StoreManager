@@ -1,5 +1,3 @@
-from instance import app
-from main import views
-
+from storeapi import app
 
 app.run(port = 5000, debug=True)
