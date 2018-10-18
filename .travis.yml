@@ -5,4 +5,10 @@ python:
 install:
   - pip install -r requirements.txt 
 # command to run tests
-script: pytest --cov=.
+script: 
+  - pytest --cov=.
+  - coverage
+  - coveralls
+ 
+after_success:
+  - coveralls  
