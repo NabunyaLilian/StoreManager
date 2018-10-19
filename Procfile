@@ -1,1 +1,1 @@
-web: gunicorn storemanagerui/run:app
+web: gunicorn run:app
