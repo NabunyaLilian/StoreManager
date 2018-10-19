@@ -10,11 +10,11 @@ Store Manager is a web application that helps store owners manage sales and prod
 
 	
 ## Features 
-- 1. Store attendant can search and add products to buyer’s cart. 
-- 2. Store attendant can see his/her sale records but can’t modify them. 
-- 3. App should show available products, quantity and price. 
-- 4. Store owner can see sales and can ﬁlter by attendants. 
-- 5. Store owner can add, modify and delete products. 
+- Store attendant can search and add products to buyer’s cart. 
+- Store attendant can see his/her sale records but can’t modify them. 
+- App should show available products, quantity and price. 
+- Store owner can see sales and can ﬁlter by attendants. 
+- Store owner can add, modify and delete products. 
 
 
 
