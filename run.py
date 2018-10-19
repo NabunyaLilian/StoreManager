@@ -1,5 +1,3 @@
-from flask import Flask 
-from flask_restful import Api
-app = Flask(__name__) 
-api = Api(app)
+from storeapi import app
+
 app.run(debug = True)
