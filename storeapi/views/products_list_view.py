@@ -15,11 +15,12 @@ class ProductList(Resource):
            min_quantity = data.get('min_quantity')
            category = data.get('category')
            string_data = [name,category] 
-           int_data = [quantity,price,min_quantity]
+           int_data = [quantity,price,min_quantity]   
         if all(isinstance(x, str) for x in string_data) and all(isinstance(x, int) for x in int_data):
-            product = { 'product_id':len(products) +1,'name':name,'quantity':quantity,'price':price,'min_quantity':min_quantity,'category':category}
-            products.append(product)
-            return product ,201
+                product = { 'product_id':len(products) +1,'name':name,'quantity':quantity,'price':price,'min_quantity':min_quantity,'category':category}
+                products.append(product)
+                return product ,201
         else:
-            return {"message":"Enter valid values please"}   
+            pass
+            # return {"message":"Enter valid values please"}, 400   
  

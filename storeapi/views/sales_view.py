@@ -22,4 +22,4 @@ class Sales(Resource):
             sales.append(sale)
             return sale ,201  
         else:
-            return {"message":"Enter valid values please"}   
+            return {"message":"Enter valid values please"},400   
