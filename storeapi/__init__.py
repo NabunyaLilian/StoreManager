@@ -1,12 +1,14 @@
-from flask import Flask 
+"""
+   A file initializing flask and defining routes
+"""
+from flask import Flask
 from flask_restful import Api
 from storeapi.views.product_view import Product
 from storeapi.views.products_list_view import ProductList
 from storeapi.views.sale_view import Sale
 from storeapi.views.sales_view import Sales
 
-
-app = Flask(__name__) 
+app = Flask(__name__)
 api = Api(app)
 
 api.add_resource(Product, '/api/v1/product/<int:product_id>')
