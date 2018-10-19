@@ -1,1 +1,1 @@
-web: gunicorn --chdir storeapi run:app
+web: gunicorn run:app
