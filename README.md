@@ -55,13 +55,13 @@ API Endpoints currently available are;
 
 Tests can be run by running by installing pytest using the command below ;
 ```
- "pip install pytest" 
+ pip install pytest
 
 ```
 
 Then after installing pytest, type the command below to run the tests
 ```
- "pytest" 
+ pytest
 
 ```
 
