@@ -5,7 +5,7 @@
 Store Manager is a web application that helps store owners manage sales and product inventory  records. This application is meant for use in a single store. 
 
 	
-## Features 
+## Required Features 
 - Store attendant can search and add products to buyer’s cart. 
 - Store attendant can see his/her sale records but can’t modify them. 
 - App should show available products, quantity and price. 
@@ -22,50 +22,58 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software
+Things you need to install the web application
 
 * Python 
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
+To deploy this application follow the following steps;
+* clone/download this project from git hub
+* create a python virtual environment using virtualenv  venv 
+* install all the libraries in the "requirements.txt" file using pip install -r requirements.txt
+* Execute the application by running a command "python run.py"
 
-To deploy this application follow the following steps
-* clone the project from git hub
-* create a python virtual environment and install all the libraries in the "requirements.txt" file 
-* navigate to the root of the project and execute the application by running a command "python run.py"
+Once the application starts running, proceed to test the endpoints using postman. 
 
-Once the application starts running. Then you can proceed to test the application using postman. The application by default runs on port 5000
-. If everything is done perfect you will see a url like http://127.0.0.1:5000/ can be used to access the application through a browser.
-
-These are the endpoints that are currently available
+API Endpoints currently available are;
 
 
-|__Type__| __Endpoint__ | __What the endpoint does__ | 
+|__Http header__| __Endpoint__ | __Functionality__ | 
 |------|-------------|------------|
-|POST|  /api/v1/products       | used for adding a product    |
-|POST| /api/v1/sales       | used to add a specific sales| 
-|GET|  /api/v1/products      | returns all products and their details    |
-|GET|  /api/v1/sales       | returns all sales made   |
-|GET|  /api/v1/product/<int:product_id>     | returns a specific product     |
-|GET|  /api/v1/sale/<int:sale_id>   | used to return a specific sale   |
+|POST|  /api/v1/products       | create a product     |
+|POST| /api/v1/sales           | create a sale order| 
+|GET|  /api/v1/products        | Fetch all products   |
+|GET|  /api/v1/sales           | Fetch all sale orders  |
+|GET|  /api/v1/product/<int:product_id>     | Fetch a single product    |
+|GET|  /api/v1/sale/<int:sale_id>   | Fetch a single sale order  |
 
 
 
 
-## Running the tests
+## Testing the Web application
 
-Tests can be run by running the command below at the root of the project directory
+Tests can be run by running by installing pytest using the command below ;
 ```
-if not installed run "pip install pytest" to install pytest
-then "pytest" to run the test
-```
-
-
-You can also get the test coverage by running the command below. this requires you to have installed pytest --cov
+ "pip install pytest" 
 
 ```
-then type pytest --cov .
+
+Then after installing pytest, type the command below to run the tests
+```
+ "pytest" 
+
+```
+
+
+
+You can also get the test coverage though this requires you to have installed pytest --cov by running the command below.
+```
+pip install pytest-cov
+```
+To get the test coverage, you type the command below.
+```
+ pytest --cov .
 ```
 
 ## Built With
