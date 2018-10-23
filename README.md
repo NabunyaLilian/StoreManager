@@ -53,7 +53,7 @@ source bin/activate
 ```
 * Execute the application by running a a given command
 
-````
+```
  python run.py
 
 ``` 
