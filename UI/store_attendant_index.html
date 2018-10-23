@@ -9,9 +9,9 @@
   <div>
   
   <ul>
-  <a href="store_attendant_index.html"><img  src = "img/logo.png" style="float: left;position: relative;height:10px ;height :45px;"></a>
+  <a href="store_attendant_index.html"><img  src = "img/logo2.png" style="float: left;position: relative;height:60px ;width :200px"></a>
   <li><a class="active" href="#">Products</a></li>
-  <li><a href="mycart.html">My cart</a></li>
+  <li><a  href="mycart.html" id="cart"><button id="value">2</button>My Cart</a></li>
   <li><a href="create_sales.html">Sales</a></li>
   <li style="float:right"><a href="login.html">Log out</a></li>
 </div>
@@ -67,14 +67,14 @@
   <div class="modal-content">
     <div class="modal-header">
       <span class="closeBtn">&times;</span>
-      <h2>Add a product</h2>
+
     </div>
     <div class="modal-body">
-      <form>
-        <input type="text" name="name" placeholder="Name" required> <br>
-        <input type="text" name="quantity" placeholder="Quantity" required> <br>
-        <input type="text" name="price" placeholder="Price" required> <br>
-        <input type="text" name="min_quantity" placeholder=Minimum quantity" required><br>
+      <form class="modal_elements">
+        Name<input type="text" name="name" required> <br>
+        Quantity<input type="text" name="quantity" required> <br>
+        Price<input type="text" name="price" required> <br>
+        Min_Quantity<input type="text" name="min_quantity" required><br>
         Category
         <select id = "category">
           <option value="laptop">Laptop</option>
@@ -82,16 +82,17 @@
           <option value="Routers">Router</option>
           <option value="printer">Printer</option>
         </select>
-        <input type="submit" name="add_product" value="submit">
+        <input type="submit" name="add_product" value="submit" id="submit">
       </form>
 
     </div>
-    <div class="modal-footer">
+    <div>
       
     </div>
   </div>
 
 </div>
+
 <script src="js/myscript.js"></script> 
 
 </body>
