@@ -9,7 +9,7 @@
   <div>
   
   <ul>
-  <a href="admin_index.html"><img  src = "img/logo.png" style="float: left;position: relative;height:10px ;height :45px "></a>
+  <a href="admin_index.html"><img  src = "img/logo2.png" style="float: left;position: relative;height:60px ;width :200px "></a>
   <li><a class="active" href="#">Products</a></li>
   <li><a href="accounts.html">Accounts</a></li>
   <li><a href="sales.html">Sales</a></li>
@@ -72,14 +72,14 @@
   <div class="modal-content">
     <div class="modal-header">
       <span class="closeBtn">&times;</span>
-      <h2>Add a product</h2>
+
     </div>
     <div class="modal-body">
-      <form>
-        <input type="text" name="name" placeholder="Name" required> <br>
-        <input type="text" name="quantity" placeholder="Quantity" required> <br>
-        <input type="text" name="price" placeholder="Price" required> <br>
-        <input type="text" name="min_quantity" placeholder=Minimum quantity" required><br>
+      <form class="modal_elements">
+        Name<input type="text" name="name" required> <br>
+        Quantity<input type="text" name="quantity" required> <br>
+        Price<input type="text" name="price" required> <br>
+        Min_Quantity<input type="text" name="min_quantity" required><br>
         Category
         <select id = "category">
           <option value="laptop">Laptop</option>
@@ -87,11 +87,11 @@
           <option value="Routers">Router</option>
           <option value="printer">Printer</option>
         </select>
-        <input type="submit" name="add_product" value="submit">
+        <input type="submit" name="add_product" value="submit" id="submit">
       </form>
 
     </div>
-    <div class="modal-footer">
+    <div>
       
     </div>
   </div>
@@ -106,22 +106,17 @@
   <div class="modal-content">
     <div class="modal-header">
       <span class="closeEditBtn">&times;</span>
-      <h2>Edit a product</h2>
     </div>
     <div class="Edit-body">
       <form>
-        <input type="text" name="name" placeholder="Name" value="HP i5"> <br>
-        <input type="text" name="quantity" placeholder="Quantity" value="50"> <br>
-        <input type="text" name="price" placeholder="Price" value="$500"> <br>
-        <input type="text" name="min_quantity" placeholder=Minimum quantity" value="10"><br>
-        <input type="text" name="category" placeholder=Minimum quantity" value="Laptop"><br>
-        <input type="submit" name="edit_product" value="submit">
+        Name<input type="text" name="name" value="HP i5"> <br>
+        Quantity<input type="text" name="quantity" value="50"> <br>
+        Price<input type="text" name="price" value="$500"> <br>
+        Min_Quantity<input type="text" name="min_quantity" value="10"><br>
+        Category<input type="text" name="category" value="Laptop"><br>
+        <input type="submit" name="edit_product" value="submit" id="submit">
       </form>
 
-    </div>
-    <div class="modal-footer">
-      
-    </div>
   </div>
 
 </div> 

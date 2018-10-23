@@ -9,9 +9,9 @@
   <div>
   
   <ul>
-  <a href="store_attendant_index.html"><img  src = "img/logo.png" style="float: left;position: relative;height:10px ;height :45px;"></a>
+  <a href="store_attendant_index.html"><img  src = "img/logo2.png" style="float: left;position: relative;height:60px ;width :200px"></a>
   <li><a href="store_attendant_index.html">Products</a></li>
-  <li><a href="mycart.html">my cart</a></li>
+  <li><a href="mycart.html" id="cart"><button id="value">2</button>My Cart</a></li>
   <li><a class="active"href="#">Sales</a></li>
   <li style="float:right"><a href="login.html">Log out</a></li>
 </div>
@@ -61,21 +61,15 @@
   <div class="modal-content">
     <div class="modal-header">
       <span class="closeBtn">&times;</span>
-      <h2>Create sale Record</h2>
     </div>
     <div class="modal-body">
       <form>
-        <input type="text" name="name" placeholder="Name" required> <br>
-        <input type="text" name="quantity" placeholder="Quantity" required> <br>
-        <input type="text" name="price" placeholder="Price" required> <br>
-        <input type="text" name="date" placeholder=Date quantity" required><br>
-        <input type="submit" name="add_product" value="submit">
+        Name<input type="text" name="name" required> <br>
+        Quantity<input type="text" name="quantity" required> <br>
+        Price<input type="text" name="price" required> <br>
+        Date<input type="text" name="date" required><br>
+        <input type="submit" name="add_product" value="submit" id="submit">
       </form>
-
-    </div>
-    <div class="modal-footer">
-      
-    </div>
   </div>
 
 </div>

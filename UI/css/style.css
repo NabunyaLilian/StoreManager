@@ -187,7 +187,7 @@ header ul {
     position: fixed;
     top: 0;
     width: 100%;
-    margin-bottom: 50px
+    margin-bottom: 50px;
     font-size: 16px;
     height :auto;
 }
@@ -201,7 +201,9 @@ header li a {
     display: block;
     color: #ffffff;
     text-align: center;
-    padding: 16px 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top:25px;
     text-decoration: none;
     font-size: 15px;
     vertical-align: middle;
@@ -209,15 +211,33 @@ header li a {
 
 header li a:hover:not(.active){
     background-color: #ddd;
-    height: 30px;
+    height: 35px;
     color:#6d6f70;
 }
-.active{
+
+.active {
     background-color: #4B99BD;
     color:white;
-    height: 30px;
+    height: 35px;
 }
 
+#cart{
+  padding-top:16px;
+}
+
+
+#cart:hover{
+    background-color: #ddd;
+    height: 40px;
+    color:#6d6f70;
+}
+
+.active2{
+  padding-top:16px;
+  background-color: #4B99BD;
+    color:white;
+    height: 44px;
+}
 /*table*/
 
 #heading{
@@ -303,7 +323,7 @@ header li a:hover:not(.active){
 
 /* The Close Button */
 .closeBtn {
-    color: white;
+    color: #4B99BD;
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -317,10 +337,11 @@ header li a:hover:not(.active){
 }
 
 .closeEditBtn {
-    color: white;
+    color: #4B99BD;
     float: right;
     font-size: 28px;
     font-weight: bold;
+    padding: 2px 16px;
 }
 
 .closeEditBtn:hover,
@@ -328,16 +349,17 @@ header li a:hover:not(.active){
     color: #000;
     text-decoration: none;
     cursor: pointer;
-} {
-    color: white;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
+} 
 
+/* submit button */
+#submit{
+  margin-left: 280px; 
+  margin-right: auto;
+
+}
 .modal-header {
     padding: 2px 16px;
-    background-color: #4B99BD;
+    margin-bottom: 30px;
     color: white;
 }
 
