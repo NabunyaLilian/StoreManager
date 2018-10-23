@@ -9,7 +9,8 @@
   form.addEventListener("submit", function(e){
       e.preventDefault() // do nothing
     // check if username is admin and password is 123
-    if(username.value =="admin" && password.value =="secret"){
+    if(username.value ==="admin" && password.value ==="secret"){
+    if(username.value ==="admin" && password.value ==="secret"){
       //send user to admin dashboard
       location = "admin_index.html";
     }
@@ -23,3 +24,4 @@
     }
   
 });
+
