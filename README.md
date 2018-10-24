@@ -4,6 +4,7 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/79a07349aa2d77166540/maintainability)](https://codeclimate.com/github/NabunyaLilian/StoreManager/maintainability)
 
+
 # StoreManager
 
 Store Manager is a web application that helps store owners manage sales and product inventory  records. This application is meant for use in a single store. 
