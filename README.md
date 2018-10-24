@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/NabunyaLilian/StoreManager.svg?branch=get_all_sales_ft)](https://travis-ci.com/NabunyaLilian/StoreManager)  
+[![Build Status](https://travis-ci.com/NabunyaLilian/StoreManager.svg?branch=challenge_2)](https://travis-ci.com/NabunyaLilian/StoreManager)
 
 [![Coverage Status](https://coveralls.io/repos/github/NabunyaLilian/StoreManager/badge.svg?branch=challenge_2)](https://coveralls.io/github/NabunyaLilian/StoreManager?branch=challenge_2)
 
