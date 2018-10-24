@@ -63,6 +63,9 @@ source bin/activate
 
 * use the endpoints given below to test the api using postman, which is the highly recommended app to use when testing api's.
 
+* This is the link to my postman collection https://www.getpostman.com/collections/ef14680c20efcddea782
+
+
 
 API Endpoints currently available are;
 
