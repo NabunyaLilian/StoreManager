@@ -108,6 +108,6 @@ To get the test coverage, you type the command below.
 
 ## Versioning
 
-URL Versioning has been used to version this applications endpoint 
+* URL Versioning has been used to version this applications endpoint 
 
-Currently only version:1 is available 
+* Currently only version:1 is available 
