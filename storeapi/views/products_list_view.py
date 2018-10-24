@@ -5,6 +5,7 @@ from flask import request
 from flask_restful import Resource
 from storeapi.models.model import products
 from storeapi.views.validation import validate
+import uuid
 
 class ProductList(Resource):
     """
@@ -16,6 +17,7 @@ class ProductList(Resource):
         """
         return {'products': products}
     def post(self):
+        pdt_id = uuid.uuid1()
         """
         method to create a product
         """
@@ -30,8 +32,9 @@ class ProductList(Resource):
                 int_data = [quantity, price, min_quantity]
 
                 if validate(string_data,int_data) == True :
-                    product = {'product_id':len(products) +1, 'name': name, 'quantity':quantity, 'price':price, 'min_quantity':min_quantity, 'category': category}
+                    product = {'product_id': pdt_id.int , 'name': name, 'quantity':quantity, 'price':price, 'min_quantity':min_quantity, 'category': category}
                     products.append(product)
                     return product, 201
                 return {"message":"Enter valid values please"}, 400
+    
     

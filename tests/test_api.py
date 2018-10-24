@@ -15,10 +15,16 @@ class Tests(TestCase):
         """
            method to get a specific item
         """
-        get_result = self.client().get('/api/v1/product/1')
-        self.assertEqual(get_result.status_code, 200)
-        get_result1 = self.client().get('/api/v1/product/TOSHIBA')
-        self.assertEqual(get_result1.status_code, 404)
+        # get_result = self.client().get('/api/v1/product/1')
+        # self.assertEqual(get_result.status_code, 200)
+
+    def test_get_non_existant_item(self) :  
+        """
+           method to test an item that does not exist
+        """
+        get_result = self.client().get('/api/v1/product/TOSHIBA')
+        self.assertEqual(get_result.status_code, 404)
+
     def test_get_all_products(self):
         """
            method to get all products
@@ -48,8 +54,13 @@ class Tests(TestCase):
         """
         get_result = self.client().get('/api/v1/sale/1')
         self.assertEqual(get_result.status_code, 200)
-        get_result1 = self.client().get('/api/v1/sale/TOSHIBA')
-        self.assertEqual(get_result1.status_code, 404)
+        
+    def test_get_non_existant_sale(self) :  
+        """
+           method to test an item that does not exist
+        """
+        get_result = self.client().get('/api/v1/sale/TOSHIBA')
+        self.assertEqual(get_result.status_code, 404)
 
     def test_get_all_sales(self):
         """
