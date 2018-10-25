@@ -6,17 +6,18 @@ from storeapi import app
 class Tests(TestCase):
     """
        Class to test api
-    """  
+    """ 
+    
     def setUp(self):
         self.app = app
         self.client = self.app.test_client
-
+        
     def test_get_specific_item(self):
         """
            method to get a specific item
         """
-        # get_result = self.client().get('/api/v1/product/1')
-        # self.assertEqual(get_result.status_code, 200)
+        get_result = self.client().get('/api/v1/product/1')
+        self.assertEqual(get_result.status_code, 200)
 
     def test_get_non_existant_item(self) :  
         """
@@ -40,6 +41,7 @@ class Tests(TestCase):
         """  
         post_result = self.client().post('/api/v1/products', content_type='application/json',
                                          data=json.dumps(dict(name="HP", quantity=30, price=2000000, min_quantity=10, category="laptop")))
+ 
         self.assertEqual(post_result.status_code, 201)   
         json_data = json.loads(post_result.data)      
         assert json_data['name'] == "HP"
