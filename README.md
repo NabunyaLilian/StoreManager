@@ -33,6 +33,8 @@ To deploy this application follow these steps;
 * clone/download this project from git hub
 ```
  git clone https://github.com/NabunyaLilian/StoreManager.git
+
+```
 * Extract the project and open it in an Editor forexample Vs code ,Pycharm or any editor of your choice.
 * create a python virtual environment using the following command
 ```
