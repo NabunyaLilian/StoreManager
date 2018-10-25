@@ -31,6 +31,8 @@ Things you need to install for the API to work
 
 To deploy this application follow these steps;
 * clone/download this project from git hub
+```
+ git clone https://github.com/NabunyaLilian/StoreManager.git
 * Extract the project and open it in an Editor forexample Vs code ,Pycharm or any editor of your choice.
 * create a python virtual environment using the following command
 ```
@@ -115,3 +117,7 @@ To get the test coverage, you type the command below.
 * URL Versioning has been used to version this applications endpoint 
 
 * Currently only version:1 is available 
+
+## Deployment
+
+* The app is deployed on heroku here's the link https://lia-store-manager-app.herokuapp.com/
