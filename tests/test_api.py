@@ -23,7 +23,7 @@ class Tests(TestCase):
         """
            method to test an item that does not exist
         """
-        get_result = self.client().get('/api/v1/product/TOSHIBA')
+        get_result = self.client().get('/api/v1/product/10000')
         self.assertEqual(get_result.status_code, 404)
 
     def test_get_all_products(self):
