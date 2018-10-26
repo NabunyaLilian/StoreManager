@@ -30,7 +30,7 @@ class ProductList(Resource):
                 string_data = [name, category]
                 int_data = [quantity, price, min_quantity]
 
-                if validate(string_data,int_data) == True :
+                if validate(string_data,int_data) == True:
                     product = {'product_id': len(products) +1 , 'name': name, 'quantity':quantity, 'price':price, 'min_quantity':min_quantity, 'category': category}
                     products.append(product)
                     return product, 201

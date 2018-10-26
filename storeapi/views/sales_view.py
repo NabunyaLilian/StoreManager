@@ -4,6 +4,7 @@
 from flask import request
 from flask_restful import Resource
 from storeapi.models.model import sales
+from storeapi.views.validation import validate
 
 class Sales(Resource):
     """
@@ -27,8 +28,9 @@ class Sales(Resource):
             store_attendant = data.get('store_attendant')
             string_data = [name, store_attendant, date]
             int_data = [quantity, price]
-        if all(isinstance(x, str) for x in string_data) and all(isinstance(x, int) for x in int_data):
-            sale = {'sale_id':len(sales) +1, 'name': name, 'quantity':quantity, 'price':price, 'date':date, 'store_attendant':store_attendant}
-            sales.append(sale)
-            return sale, 201
-        return {"message":"Enter valid values please"}
+
+            if validate(string_data,int_data) == True :
+                    sale = {'sale_id':len(sales) +1, 'name': name, 'quantity':quantity, 'price':price, 'date':date, 'store_attendant':store_attendant}
+                    sales.append(sale)
+                    return sale, 201
+            return {"message":"Enter valid values please"}

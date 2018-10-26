@@ -12,9 +12,9 @@ class Sale(Resource):
         """
            method to get a specific sale
         """
-        for sale in sales:
-            if sale['sale_id'] == sale_id:
-                return sale
-        return {'sale': None}, 404
+        sale = check_id(sale_id , sales ,'sale_id') 
+        if sale:
+           return sale
+        return {'message':'resource not found'}
       
     

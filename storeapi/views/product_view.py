@@ -3,6 +3,7 @@
 """
 from flask_restful import Resource
 from storeapi.models.model import products
+from storeapi.views.check import check_id
 
 class Product(Resource):
     """
@@ -12,5 +13,7 @@ class Product(Resource):
         """
            method to get a specific product
         """
-        product = next(filter(lambda x: x['product_id'] == product_id, products), None)
-        return {'product': product}, 200 if product else 404
+        product = check_id(product_id , products ,'product_id') 
+        if product:
+           return product
+        return {'message':'resource not found'},404
