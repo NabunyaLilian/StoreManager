@@ -3,6 +3,7 @@
 """
 from flask_restful import Resource
 from storeapi.models.model import sales
+from storeapi.views.check import check_id
 
 class Sale(Resource):
     """

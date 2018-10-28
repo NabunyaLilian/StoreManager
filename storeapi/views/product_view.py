@@ -13,7 +13,7 @@ class Product(Resource):
         """
            method to get a specific product
         """
-        product = check_id(product_id , products ,'product_id') 
-        if product:
-           return product
+        Item = check_id(product_id , products ,'product_id') 
+        if Item:
+           return Item
         return {'message':'resource not found'},404
