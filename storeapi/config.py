@@ -1,5 +1,3 @@
-import os
-basedir = os.path.abspath(os.path.dirname(__file__))
 #default config
 class BaseConfig(object):
     DEBUG = False
@@ -16,3 +14,4 @@ class TestingConfig(BaseConfig):
 
 class StagingConfig(BaseConfig):
     DEBUG = True
+

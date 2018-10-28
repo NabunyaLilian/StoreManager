@@ -7,9 +7,12 @@ from storeapi.views.product_view import Product
 from storeapi.views.products_list_view import ProductList
 from storeapi.views.sale_view import Sale
 from storeapi.views.sales_view import Sales
+import os
 
 
 app = Flask(__name__)
+app.config.from_object('config.DevelopmentConfig') 
+
 api = Api(app)
 
 api.add_resource(Product, '/api/v1/product/<int:product_id>')
