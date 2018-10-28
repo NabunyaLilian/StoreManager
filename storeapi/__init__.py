@@ -9,9 +9,7 @@ from storeapi.views.sale_view import Sale
 from storeapi.views.sales_view import Sales
 import os
 
-
 app = Flask(__name__)
-app.config.from_object('config.DevelopmentConfig') 
 
 api = Api(app)
 
