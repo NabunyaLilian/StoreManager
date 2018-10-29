@@ -5,13 +5,18 @@ class BaseConfig(object):
 
 class DevelopmentConfig(BaseConfig):
     DEBUG = True
+    TESTING = False
 
 class ProductionConfig(BaseConfig):
     DEBUG = False
+    TESTING = False
 
 class TestingConfig(BaseConfig):
     TESTING = True
-
-class StagingConfig(BaseConfig):
     DEBUG = True
 
+app_config{
+   'development':DevelopmentConfig
+   'production':ProductionConfig
+   'testing':TestingConfig
+}
