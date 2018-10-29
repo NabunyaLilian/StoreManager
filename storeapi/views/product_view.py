@@ -14,5 +14,5 @@ class Product(Resource):
         """
         product = next(filter(lambda x: x['product_id'] == product_id, products), None)
         return {'product': product}, 200 if product else 404
-    def put(self):
-        
+    # def put(self):
+    # def delete(self):

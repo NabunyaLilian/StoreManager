@@ -6,3 +6,7 @@ def validate(a,b):
         return True
        
 
+# def check_missing_field(fields):
+#         if not fields:
+#                 return 'missing fields'
+                
