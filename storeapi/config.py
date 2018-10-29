@@ -15,8 +15,8 @@ class TestingConfig(BaseConfig):
     TESTING = True
     DEBUG = True
 
-app_config{
-   'development':DevelopmentConfig
-   'production':ProductionConfig
+app_config = {
+   'development':DevelopmentConfig,
+   'production':ProductionConfig,
    'testing':TestingConfig
 }

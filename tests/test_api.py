@@ -1,8 +1,7 @@
 """A module for testing"""
 from unittest import TestCase
 from flask import json
-from storeapi import app
-
+from storeapi import create_app
 
 class Tests(TestCase):
     """
@@ -10,7 +9,7 @@ class Tests(TestCase):
     """ 
     
     def setUp(self):
-        self.app = app
+        self.app = create_app('testing')
         self.client = self.app.test_client
         
     def test_get_specific_item(self):
