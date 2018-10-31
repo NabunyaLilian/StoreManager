@@ -7,14 +7,18 @@ import datetime
 class LogIn(Resource):
     def post(self):
         data = parser.parse_args()
-        return data
-        user_information = User.get_user_by_username(data["username"])
-        print (user_informations)
+        user = User(data['username'],data['name'],data['password'],data['isAdmin'])
+        user_information = user.get_user_by_username() 
         if user_information:
-           if User.verify_hash(data["password"],user_information["password"]):
-                expires_at = datetime.timedelta(days=1)
-                jwt_token = create_access_token(identity=user_information['id'], expires_delta=expires_at)
-                return {"status": "success", "message": "successfully logged in",
-                        "jwt_token": auth_token,"users_name": user_information["name"]}, 200
+            response =  {
+                                "message": "user logged in successfully",
+                                "user": {
+                                    "username": data['username'],
+                                    "name": data['name'] }
+                            }, 201
+            return response
+        
 
-        return {"status": "fail", "message": "Unauthorised Access. username or password"}, 401   
+        
+       
+           

@@ -2,6 +2,7 @@
 from unittest import TestCase
 from flask import json
 from storeapi import app
+from storeapi.database_file import DatabaseConnection
 
 class Tests(TestCase):
     """
@@ -9,6 +10,10 @@ class Tests(TestCase):
     """ 
     
     def setUp(self):
+        db = DatabaseConnection()
+        self.create_user_table = db.create_table_store_users()
+        self.create_products_table = db.create_products_table()
+        self.create_sales_table = db.create_sales_table()
         self.app = app
         self.client = self.app.test_client
         

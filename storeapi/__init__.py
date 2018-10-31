@@ -1,6 +1,7 @@
 """
    A file initializing flask and defining routes
 """
+
 from flask import Flask
 from flask_restful import Api
 from storeapi.views.product_view import Product
@@ -10,16 +11,19 @@ from storeapi.views.sales_view import Sales
 from storeapi.views.login import LogIn
 from storeapi.views.signup import SignUp
 from storeapi.views.logout import LogOut
+import sys
+import os.path
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 app = Flask(__name__)
 api = Api(app)
 
-api.add_resource(Product, '/api/v1/product/<int:product_id>')
-api.add_resource(ProductList, '/api/v1/products')
+api.add_resource(Product, '/api/v2/product/<int:product_id>')
+api.add_resource(ProductList, '/api/v2/products')
 
-api.add_resource(Sale, '/api/v1/sale/<int:sale_id>')
-api.add_resource(Sales, '/api/v1/sales')
-api.add_resource(SignUp, '/api/v1/auth/signup') 
-api.add_resource(LogIn, '/api/v1/auth/login')
-api.add_resource(LogOut,'/api/v1/logout')
+api.add_resource(Sale, '/api/v2/sale/<int:sale_id>')
+api.add_resource(Sales, '/api/v2/sales')
+api.add_resource(SignUp, '/api/v2/auth/signup') 
+api.add_resource(LogIn, '/api/v2/auth/login')
+api.add_resource(LogOut,'/api/v2/logout')
 

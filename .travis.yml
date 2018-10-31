@@ -5,6 +5,11 @@ python:
 install:
   - pip install -r requirements.txt 
 # command to run tests
+
+before_script:
+-psql -c "CREATE ROLE Lilian WITH SUPERUSER LOGIN PASSWORD 'lianda';" -U postgres
+-psql -c "CREATE DATABASE test;" -U postgres
+
 script: 
   - pytest --cov=.
   - coverage

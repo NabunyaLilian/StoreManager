@@ -1,11 +1,9 @@
 """
    A file for defining products list view resource
 """
-from flask import request
+from flask_restful import reqparse
 from flask_restful import Resource
-from storeapi.models.model import products
-from storeapi.views.validation import validate
-import uuid
+from storeapi.models.products import Products
 
 class ProductList(Resource):
     """
@@ -15,25 +13,35 @@ class ProductList(Resource):
         """
         method to get all products
         """
-        return {'products': products}
+        data = Products.parse()
+        product_obj = Products(data['name'],data['quantity'],data['price'],data['min_quantity'],data['category'])
+        products = product_obj.get_all_products()
+        return products 
+
     def post(self):
         """
         method to create a product
         """
-        if request.content_type == 'application/json':
-                data = request.get_json()
-                name = data.get('name')
-                quantity = data.get('quantity')
-                price = data.get('price')
-                min_quantity = data.get('min_quantity')
-                category = data.get('category')
-                string_data = [name, category]
-                int_data = [quantity, price, min_quantity]
+        data = Products.parse()
+        product_obj = Products(data['name'],data['quantity'],data['price'],data['min_quantity'],data['category'])
+        if not product_obj.check_empty_fields():
+            return {"Error":"Field empty field detected, make sure all fields have values"}, 400
+        # if product_obj.validate_data_type():  
+        #     return {"Error": "Make sure every field has the right datatype"},400  
+        # if  product_obj.search_special_characters():
+        #     return {"Error":"No string should contain special characters"},400                  
+        # if  product_obj.check_field_numeric() :
+        #         return {"Error":"name should not contain numbers"},401 
 
-                if validate(string_data,int_data) == True :
-                    product = {'product_id': len(products) +1 , 'name': name, 'quantity':quantity, 'price':price, 'min_quantity':min_quantity, 'category': category}
-                    products.append(product)
-                    return product, 201
-                return {"message":"Enter valid values please"}, 400
-    
-    
+
+        product = product_obj.create_product()
+        if product :
+            response =  {
+                                "message": "user product created successfully",
+                                "user": {
+                                    "name": data['name'],
+                                    "price": data['price'] }
+                            }, 201
+            return response
+        else:
+            return {'message':'something went wrong'} 
