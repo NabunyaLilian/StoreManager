@@ -4,6 +4,9 @@
 from flask_restful import reqparse
 from flask_restful import Resource
 from storeapi.models.products import Products
+from flask_jwt_extended import jwt_required, get_jwt_identity
+from psycopg2.extras import RealDictCursor
+
 
 class ProductList(Resource):
     """
@@ -12,30 +15,29 @@ class ProductList(Resource):
     def get(self):
         """
         method to get all products
-        """
-        data = Products.parse()
-        product_obj = Products(data['name'],data['quantity'],data['price'],data['min_quantity'],data['category'])
-        products = product_obj.get_all_products()
+        """      
+        products = Products.get_all_products()
         return products 
-
+    
+    @jwt_required
     def post(self):
         """
         method to create a product
         """
         data = Products.parse()
         product_obj = Products(data['name'],data['quantity'],data['price'],data['min_quantity'],data['category'])
-        if not product_obj.check_empty_fields():
-            return {"Error":"Field empty field detected, make sure all fields have values"}, 400
-        # if product_obj.validate_data_type():  
-        #     return {"Error": "Make sure every field has the right datatype"},400  
-        # if  product_obj.search_special_characters():
-        #     return {"Error":"No string should contain special characters"},400                  
-        # if  product_obj.check_field_numeric() :
-        #         return {"Error":"name should not contain numbers"},401 
-
+        user_identity = get_jwt_identity()
+        if not user_identity['admin_status'] :
+           return {"Error":"Access denied"}
+        if product_obj.check_empty_fields() == True:
+            return {"Error":"Field empty field detected, make sure all fields have values"}, 400    
+        if product_obj.search_special_characters() == False:
+            return {"Error":"No string should contain special characters"},400                  
+        if product_obj.check_field_numeric() == False :
+                return {"Error":"name should not contain numbers"},400 
 
         product = product_obj.create_product()
-        if product :
+        if product:
             response =  {
                                 "message": "user product created successfully",
                                 "user": {
@@ -44,4 +46,7 @@ class ProductList(Resource):
                             }, 201
             return response
         else:
-            return {'message':'something went wrong'} 
+            return {'error':'something went wrong'} 
+    
+
+        

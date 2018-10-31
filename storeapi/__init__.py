@@ -3,6 +3,7 @@
 """
 
 from flask import Flask
+from flask_jwt_extended import JWTManager 
 from flask_restful import Api
 from storeapi.views.product_view import Product
 from storeapi.views.products_list_view import ProductList
@@ -16,6 +17,8 @@ import os.path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 app = Flask(__name__)
+app.config['JWT_SECRET_KEY'] = 'secret_storeapi_key'
+jwt = JWTManager(app)
 api = Api(app)
 
 api.add_resource(Product, '/api/v2/product/<int:product_id>')

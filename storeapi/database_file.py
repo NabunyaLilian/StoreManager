@@ -21,8 +21,8 @@ class DatabaseConnection:
     def create_products_table(self):
         query = """ CREATE TABLE IF NOT EXISTS products (
                 product_id  SERIAL PRIMARY KEY, name VARCHAR(255) NOT NULL, quantity INTEGER NOT NULL,
-                price INTEGER NOT NULL, min_quantity INTEGER, category VARCHAR(50) NOT NULL,
-                user_id INTEGER REFERENCES store_users ON UPDATE CASCADE ON DELETE CASCADE)"""
+                price INTEGER NOT NULL, min_quantity INTEGER, category VARCHAR(50) NOT NULL
+                )"""
         self.cursor.execute(query)
         return "products table created"
 

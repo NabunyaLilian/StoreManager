@@ -7,6 +7,11 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/..")
 import database_file
 from passlib.hash import pbkdf2_sha256 as sha256
 
+
+db = database_file.DatabaseConnection()
+cursor = db.cursor
+dict_cursor = db.dict_cursor
+
 class Products:
 
     def __init__(self,name,quantity,price,min_quantity,category):
@@ -30,11 +35,30 @@ class Products:
         self.dict_cursor.execute(query, [product_id])
         row = self.dict_cursor.fetchone()
         return row
+    
+    def update_products(self,product_id):
+        query = "UPDATE products SET name ='{}', quantity = '{}', price ='{}', min_quantity ='{}', category = '{}' where product_id ='{}'".format(self.name,self.quantity,self.price,self.min_quantity,self.category,product_id) 
+        dict_cursor.execute(query)
+        return True
 
-    def get_all_products(self):
+    @staticmethod
+    def delete_product(product_id):
+        query = "DELETE from products WHERE product_id = '{}'".format(product_id)
+        dict_cursor.execute(query)
+        return True
+        
+    @staticmethod    
+    def get_product_by_id(product_id):
+        query = """ SELECT * FROM products WHERE product_id = {} """ .format(product_id)
+        dict_cursor.execute(query)
+        row = dict_cursor.fetchone()
+        return row
+
+    @staticmethod
+    def get_all_products():
         query = "SELECT * FROM products"
-        self.dict_cursor.execute(query)
-        all = self.dict_cursor.fetchall()
+        dict_cursor.execute(query)
+        all = dict_cursor.fetchall()
         return all
 
     @staticmethod
@@ -55,22 +79,21 @@ class Products:
     
     def search_special_characters(self):
         regex = re.compile('[@_!#$%^&*()<>?/\|}{~:]') #creates a regular expression object to be used in matching
-        if(regex.search(self.name) == None): 
-            print("name is accepted")     
-        else:  
-            print("name not accepted.") 
-        if(regex.search(self.category) == None):
-            print("category is accepted")  
+        if (regex.search(self.name) == None) and (regex.search(self.category) == None):       
+            return True  
         else:
-            print("category not accepted")      
-        return True    
+            return False  
 
     def check_empty_fields(self):
-        if self.name != "" and  self.quantity != "" and  self.price != "" and self.min_quantity != "" and self.category != "":
+        if self.name == "" or  self.quantity == "" or  self.price == "" or self.min_quantity == "" or self.category == "":
             return True    
 
     def check_field_numeric(self):
-        if self.name.isnumeric:
-            return True      
-
-   
+        regex = re.compile('[0-9]')
+        if (regex.search(self.name) == None):
+            return True   
+        else:
+            return False   
+    def check_empty_space(self):
+        if  (re.search['\s'],self.name != None) or (re.search['\s'],self.quantity != None) or (re.search['\s'],self.price != None) or (re.search['\s'],self.min_quantity != None) or (re.search['\s'],self.category != None) :
+            return 

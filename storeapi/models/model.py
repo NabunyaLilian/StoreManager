@@ -7,8 +7,12 @@ import os.path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/..")
 import database_file
 from passlib.hash import pbkdf2_sha256 as sha256
+from psycopg2.extras import RealDictCursor
 
 
+db = database_file.DatabaseConnection()
+cursor = db.cursor
+dict_cursor = db.dict_cursor
 class User:
 
     def __init__(self,username,name,password,isAdmin):
@@ -19,16 +23,17 @@ class User:
         self.db = database_file.DatabaseConnection()
         self.dict_cursor = self.db.dict_cursor
         self.cursor = self.db.cursor
-          
-    def get_user_by_username(self):
+
+    @staticmethod     
+    def get_user_by_username(username):
 
         query = "SELECT * FROM store_users WHERE username = %s "
-        self.dict_cursor.execute(query, [self.username])
-        row = self.dict_cursor.fetchone()
+        dict_cursor.execute(query, [username])
+        row = dict_cursor.fetchone()
         return row
 
     def create_user(self):
-        query = "INSERT INTO store_users (name,username,password,isAdmin) VALUES ('{}', '{}','{}','{}')".format(self.name,self.username,self.password,self.isAdmin)
+        query = "INSERT INTO store_users (name,username,password,isAdmin) VALUES ('{}', '{}','{}','{}')".format(self.name,self.username,User.generate_hash(self.password),self.isAdmin)
         self.cursor.execute(query)
         return True
 
@@ -48,35 +53,45 @@ class User:
         data = parser.parse_args() 
         return data
     
+        
     def validate_data_type(self):
-        a = [self.name,self.username, self.isAdmin]
-        if all(isinstance(x, str) for x in a): 
+        if not isinstance(self.name ,str) or  not isinstance(self.username ,str): 
            return True
-    
+        # error = dict()
+        # user = {
+        #     'name':self.name,
+        #     'username':self.username,
+        #     'password':self.password
+        # }
+        # for key in user:
+        #     if not isinstance(user[key], str):
+        #         error[key] = '{} should be alphabetical'.format(key)
+        # return error
+
+
     def search_special_characters(self):
         regex = re.compile('[@_!#$%^&*()<>?/\|}{~:]') #creates a regular expression object to be used in matching
-        if(regex.search(self.username) == None): 
-            print("Username is accepted")     
-        else:  
-            print("Username not accepted.") 
-        if(regex.search(self.name) == None):
-            print("Name is accepted")  
+        if (regex.search(self.username) == None) and (regex.search(self.name) == None):       
+            return True  
         else:
-            print("Name not accepted")      
-        return True    
+            return False  
 
     def check_empty_fields(self):
-        if self.name != "" and  self.username != "" and  self.password != "" and self.isAdmin != "":
+        if self.name == "" or self.username == "" or  self.password == "" or self.isAdmin == "":
             return True    
 
     def check_field_numeric(self):
-        if self.name.isnumeric:
-            return True      
+        regex = re.compile('[0-9]')
+        if (regex.search(self.name) == None):
+            return True   
+        else:
+            return False   
 
-    def generate_hash(self):
-        return sha256.hash(self.password)
+    @staticmethod
+    def generate_hash(password):
+        return sha256.hash(password)
 
+    @staticmethod
+    def verify_hash(password,hash):
+        return sha256.verify(password,hash)
 
-    def verify_hash(self,hash):
-        return sha256.verify(self.password,hash)
-       

@@ -7,17 +7,21 @@ import datetime
 class LogIn(Resource):
     def post(self):
         data = parser.parse_args()
-        user = User(data['username'],data['name'],data['password'],data['isAdmin'])
-        user_information = user.get_user_by_username() 
+        user_information = User.get_user_by_username(data['username']) 
+        identity = dict(user_id = user_information.get('user_id'), admin_status = user_information.get('isadmin') )
         if user_information:
-            response =  {
-                                "message": "user logged in successfully",
-                                "user": {
-                                    "username": data['username'],
-                                    "name": data['name'] }
+            if User.verify_hash(data['password'],user_information['password'] ):
+                expires = datetime.timedelta(days=1)
+                auth_token = create_access_token(identity=identity, expires_delta=expires)
+                response = {
+                            "auth_token": auth_token,
+                            "status": "success",
+                            "message": "user logged in successfully",
+                            "user":{"username": data["username"]}
                             }, 201
-            return response
-        
+                return response
+            return {"status": "fail", "error": "login failed"}, 409        
+            
 
         
        
