@@ -32,6 +32,8 @@ class Product(Resource):
             return {"Error":"No string should contain special characters"},400                  
         if product_obj.check_field_numeric() == False :
                 return {"Error":"name should not contain numbers"},400 
+        if product_obj.check_empty_space():
+                return {"Error":"space detected in one of the fields"},400        
         new_product = product_obj.update_products(product_id) 
         if new_product:
             response =  {

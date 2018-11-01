@@ -21,21 +21,21 @@ class Tests(TestCase):
         """
            method to get a specific item
         """
-        get_result = self.client().get('/api/v1/product/1')
+        get_result = self.client().get('/api/v2/product/1')
         self.assertEqual(get_result.status_code, 200)
 
     def test_get_non_existant_item(self) :  
         """
            method to test an item that does not exist
         """
-        get_result = self.client().get('/api/v1/product/10000')
+        get_result = self.client().get('/api/v2/product/10000')
         self.assertEqual(get_result.status_code, 404)
 
     def test_get_all_products(self):
         """
            method to get all products
         """
-        get_result = self.client().get('/api/v1/products')
+        get_result = self.client().get('/api/v2/products')
         response = json.loads(get_result.data.decode("utf8"))
         self.assertEqual(get_result.status_code, 200)
         self.assertIsInstance(response, dict)
@@ -44,7 +44,7 @@ class Tests(TestCase):
         """
            method to add a specific product
         """  
-        post_result = self.client().post('/api/v1/products', content_type='application/json',
+        post_result = self.client().post('/api/v2/products', content_type='application/json',
                                          data=json.dumps(dict(name="HP", quantity=30, price=2000000, min_quantity=10, category="laptop")))
  
         self.assertEqual(post_result.status_code, 201)   
@@ -59,14 +59,14 @@ class Tests(TestCase):
         """
            method to get a specific sale
         """
-        get_result = self.client().get('/api/v1/sale/1')
+        get_result = self.client().get('/api/v2/sale/1')
         self.assertEqual(get_result.status_code, 200)
         
     def test_get_non_existant_sale(self) :  
         """
            method to test an item that does not exist
         """
-        get_result = self.client().get('/api/v1/sale/TOSHIBA')
+        get_result = self.client().get('/api/v2/sale/TOSHIBA')
         self.assertEqual(get_result.status_code, 404)
 
     def test_get_all_sales(self):

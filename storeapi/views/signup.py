@@ -23,6 +23,8 @@ class SignUp(Resource):
             return {"Error":"No string should contain special characters"},400                  
         if user.check_field_numeric() == False :
                 return {"Error":"name should not contain numbers"},400 
+        if user.check_empty_space():
+                return {"Error":"space detected in one of the fields"},400 
 
         user_information = User.get_user_by_username(data['username']) 
         if  user_information: 

@@ -7,7 +7,7 @@ from flask_jwt_extended import JWTManager
 from flask_restful import Api
 from storeapi.views.product_view import Product
 from storeapi.views.products_list_view import ProductList
-from storeapi.views.sale_view import Sale
+from storeapi.views.sale_view import SaleView
 from storeapi.views.sales_view import Sales
 from storeapi.views.login import LogIn
 from storeapi.views.signup import SignUp
@@ -24,7 +24,7 @@ api = Api(app)
 api.add_resource(Product, '/api/v2/product/<int:product_id>')
 api.add_resource(ProductList, '/api/v2/products')
 
-api.add_resource(Sale, '/api/v2/sale/<int:sale_id>')
+api.add_resource(SaleView, '/api/v2/sale/<int:sale_id>')
 api.add_resource(Sales, '/api/v2/sales')
 api.add_resource(SignUp, '/api/v2/auth/signup') 
 api.add_resource(LogIn, '/api/v2/auth/login')
