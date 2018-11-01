@@ -1,15 +1,25 @@
 import psycopg2
 from psycopg2.extras import RealDictCursor
+import os
 
 class DatabaseConnection:
     def __init__(self):
-        self.conn = psycopg2.connect(database="testdb", user="postgres", password="password", host="localhost", port="5433")
-        self.conn.autocommit = True
-        self.cursor = self.conn.cursor()
-        self.dict_cursor = self.conn.cursor(cursor_factory=RealDictCursor)
-        print("connected yesssssssssssssssss")
+        
+        try:
+            if os.getenv('APP_SETTINGS') == "testing" :
+               dbname = 'testdb' 
+            else:
+                dbname = 'storedb'
+            self.conn = psycopg2.connect(database=dbname, user="postgres", password="password", host="localhost", port="5433")
+            self.conn.autocommit = True
+            self.cursor = self.conn.cursor()
+            self.dict_cursor = self.conn.cursor(cursor_factory=RealDictCursor)
+            print("connected yesssssssssssssssss")
+            print(dbname)
 
-
+        except:
+            print("can not connect successfully")
+        
     def create_table_store_users(self):
 
         query = """ CREATE TABLE IF NOT EXISTS store_users( user_id SERIAL PRIMARY KEY, name VARCHAR(255) NOT NULL,

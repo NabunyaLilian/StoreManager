@@ -15,10 +15,13 @@ class Product(Resource):
         """
            method to get a specific product
         """
-
+ 
         product = Products.get_product_by_id(product_id)
-        return product
-
+        if product:
+           return {
+                    {'product':product}
+                 }
+        return {"message":"product doesnot exist"} 
     @jwt_required    
     def put (self,product_id):
         """
@@ -40,14 +43,14 @@ class Product(Resource):
         new_product = product_obj.update_products(product_id) 
         if new_product:
             response =  {
-                                    "message": "user product updated successfully",
+                                    "message": "product updated successfully",
                                     "user": {
                                         "name": data['name'],
                                         "quantity" : data['quantity'],
                                         "price": data['price'],
                                         "min_quantity":data['min_quantity'],
                                         "category": data['category'] }
-                                }, 201
+                                }, 202
             return response                    
 
     def delete(self,product_id):

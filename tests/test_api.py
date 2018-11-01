@@ -1,29 +1,29 @@
 """A module for testing"""
 from unittest import TestCase
 from flask import json
+from storeapi.config import app_configuration 
 from storeapi import app
 from storeapi.database_file import DatabaseConnection
+from tests.base_test import BaseTestCase
 
 
-class Tests(TestCase):
+class Tests(BaseTestCase):
     """
        Class to test api
     """ 
     
-    def setUp(self):
-        db = DatabaseConnection()
-        self.create_user_table = db.create_table_store_users()
-        self.create_products_table = db.create_products_table()
-        self.create_sales_table = db.create_sales_table()
-        self.app = app
-        self.client = self.app.test_client
-        
     def test_get_specific_item(self):
         """
            method to get a specific item
         """
-        get_result = self.client().get('/api/v2/product/1')
+        admin_status = self.admin_login()
+        response = self.client().post("/api/v2/products",
+                                 content_type='application/json', headers=dict(Authorization='Bearer '+admin_status['access_token']),
+                                 data=json.dumps(dict(name="Hp", quantity=15,price=2000,min_quantity =33,category="laptop"),)   
+                             )
+        get_result = self.client().get('/api/v2/product/1', content_type = 'application/json', headers=dict(Authorization='Bearer '+admin_status['access_token']), )
         self.assertEqual(get_result.status_code, 200)
+
 
     def test_get_non_existant_item(self) :  
         """
@@ -60,7 +60,7 @@ class Tests(TestCase):
         """
            method to add a product with empty name
         """  
-        post_result = self.client().post('api/v1/products', content_type = 'application/json',
+        post_result = self.client().post('api/v2/products', content_type = 'application/json',
                                          data=json.dumps(dict(name="", quantity=30, price=5000000, min_quantity=10, category="laptop")))
         self.assertEqual(post_result.status_code, 400)     
 
@@ -82,14 +82,14 @@ class Tests(TestCase):
         """
            method to get all sales
         """
-        get_result = self.client().get('/api/v1/sales')
+        get_result = self.client().get('/api/v2/sales')
         self.assertEqual(get_result.status_code, 200)
 
     def test_add_sale(self):
         """
            method to add specific sale
         """  
-        post_result = self.client().post('/api/v1/sales', content_type='application/json',
+        post_result = self.client().post('/api/v2/sales', content_type='application/json',
                                          data=json.dumps(dict(name="HP", quantity=30, price=500000, date='16/10/2018', store_attendant='John')))
         self.assertEqual(post_result.status_code, 201)                    
         json_data = json.loads(post_result.data)      

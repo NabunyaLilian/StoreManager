@@ -43,7 +43,7 @@ class ProductList(Resource):
         product = product_obj.create_product()
         if product:
             response =  {
-                                "message": "user product created successfully",
+                                "message": "product created successfully",
                                 "user": {
                                     "name": data['name'],
                                     "price": data['price'] }

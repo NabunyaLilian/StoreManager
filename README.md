@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/NabunyaLilian/StoreManager.svg?branch=challenge_2)](https://travis-ci.com/NabunyaLilian/StoreManager) [![Coverage Status](https://coveralls.io/repos/github/NabunyaLilian/StoreManager/badge.svg?branch=challenge_2)](https://coveralls.io/github/NabunyaLilian/StoreManager?branch=challenge_2) [![Maintainability](https://api.codeclimate.com/v1/badges/79a07349aa2d77166540/maintainability)](https://codeclimate.com/github/NabunyaLilian/StoreManager/maintainability)
+[![Build Status](https://travis-ci.com/NabunyaLilian/StoreManager.svg?branch=develop)](https://travis-ci.com/NabunyaLilian/StoreManager) [![Coverage Status](https://coveralls.io/repos/github/NabunyaLilian/StoreManager/badge.svg?branch=develop)](https://coveralls.io/github/NabunyaLilian/StoreManager?branch=develop) [![Maintainability](https://api.codeclimate.com/v1/badges/79a07349aa2d77166540/maintainability)](https://codeclimate.com/github/NabunyaLilian/StoreManager/maintainability)
 
 
 # StoreManager

@@ -14,13 +14,13 @@ class LogIn(Resource):
                 expires = datetime.timedelta(days=1)
                 auth_token = create_access_token(identity=identity, expires_delta=expires)
                 response = {
-                            "auth_token": auth_token,
-                            "status": "success",
+                            "access_token": auth_token,
+                            "status": "true",
                             "message": "user logged in successfully",
                             "user":{"username": data["username"]}
-                            }, 201
+                            }, 200
                 return response
-            return {"status": "fail", "error": "login failed"}, 409        
+            return {"status": "fail", "error": "login failed"}, 401       
             
 
         

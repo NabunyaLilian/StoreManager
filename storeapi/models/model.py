@@ -48,9 +48,9 @@ class User:
     @staticmethod
     def parse():
         parser = reqparse.RequestParser()
-        parser.add_argument('name', help = 'This field cannot be left blank', required = True)
-        parser.add_argument('username', help = 'This field cannot be left blank', required = True)
-        parser.add_argument('password', help = 'This field cannot be left blank', required = True) 
+        parser.add_argument('FirstName', help = 'This field cannot be left blank', required = True)
+        parser.add_argument('Username', help = 'This field cannot be left blank', required = True)
+        parser.add_argument('Password', help = 'This field cannot be left blank', required = True) 
         parser.add_argument('isAdmin', help = 'This field cannot be left blank', required = True)
         data = parser.parse_args()
         return data

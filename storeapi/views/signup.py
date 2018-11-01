@@ -11,7 +11,7 @@ class SignUp(Resource):
     @jwt_required 
     def post(self):
         data = User.parse()
-        user = User(data['username'],data['name'],data['password'],data['isAdmin'])
+        user = User(data['Username'],data['FirstName'],data['Password'],data['isAdmin'])
         user_identity = get_jwt_identity()
         if not user_identity['admin_status'] :
             return {"Error":"Access denied"}
@@ -26,7 +26,7 @@ class SignUp(Resource):
         if user.check_empty_space():
                 return {"Error":"space detected in one of the fields"},400 
 
-        user_information = User.get_user_by_username(data['username']) 
+        user_information = User.get_user_by_username(data['Username']) 
         if  user_information: 
             return {"message":"username already exists"}
         else:
