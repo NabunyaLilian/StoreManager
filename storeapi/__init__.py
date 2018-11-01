@@ -11,7 +11,6 @@ from storeapi.views.sale_view import SaleView
 from storeapi.views.sales_view import Sales
 from storeapi.views.login import LogIn
 from storeapi.views.signup import SignUp
-from storeapi.views.logout import LogOut
 import sys
 import os.path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
@@ -30,6 +29,6 @@ api.add_resource(SaleView, '/api/v2/sale/<int:sale_id>')
 api.add_resource(Sales, '/api/v2/sales')
 api.add_resource(SignUp, '/api/v2/auth/signup') 
 api.add_resource(LogIn, '/api/v2/auth/login')
-api.add_resource(LogOut,'/api/v2/logout')
+
 
 

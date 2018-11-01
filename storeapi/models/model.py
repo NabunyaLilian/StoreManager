@@ -22,69 +22,48 @@ class User:
         self.username = username
         self.password = password
         self.isAdmin = isAdmin
-        self.db = database_file.DatabaseConnection()
-        self.dict_cursor = self.db.dict_cursor
-        self.cursor = self.db.cursor
 
     @staticmethod   
-    def get_user_by_username(username):
+    def get_user_by_username(username) :
+        dict_cursor.execute("SELECT * FROM store_users WHERE username = %s ", (username,))
+        return  dict_cursor.fetchone()
 
-        query = "SELECT * FROM store_users WHERE username = %s "
-        dict_cursor.execute(query, [username])
-        row = dict_cursor.fetchone()
-        return row
-
-    def create_user(self):
-        query = "INSERT INTO store_users (name, username, password, isAdmin) VALUES ('{}', '{}','{}','{}')".format(self.name,self.username,User.generate_hash(self.password),self.isAdmin)
-        self.cursor.execute(query)
+    def create_user(self) :
+        cursor.execute("INSERT INTO store_users (name,username,password,isadmin) VALUES (%s,%s,%s,%s)", (self.name, self.username, User.generate_hash(self.password), self.isAdmin))
         return True
 
-    def get_all_users(self):
-        query = "SELECT * FROM store_users"
-        self.dict_cursor.execute(query)
-        all = self.dict_cursor.fetchall()
-        return all
-
     @staticmethod
-    def parse():
+    def parse() :
         parser = reqparse.RequestParser()
         parser.add_argument('name', help = 'This field cannot be left blank', required = True)
         parser.add_argument('username', help = 'This field cannot be left blank', required = True)
         parser.add_argument('password', help = 'This field cannot be left blank', required = True) 
         parser.add_argument('isAdmin', help = 'This field cannot be left blank', required = True)
-        data = parser.parse_args()
-        return data
+        return parser.parse_args()
     
-    def validate_data_type(self):
-        if not isinstance(self.name, str) or  not isinstance(self.username, str):
-           return True
-       
-    def search_special_characters(self):
-        regex = re.compile(r'[@_!#$%^&*()<>?/\|}{~:]')  #creates a regular expression object to be used in matching
-        if (regex.search(self.username) is None) and (regex.search(self.name) is None):
-            return True
-        else:
-            return False
-
+    def validate_data_type(self) :
+        return isinstance(self.name, str) or  not isinstance(self.username, str)
+            
+    def search_special_characters(self) :
+        regex = re.compile(r'[@_!#$%^&*()<>?/\|}{~:]') 
+        return regex.search(self.username) or regex.search(self.name) 
+            
     def check_empty_fields(self):
-        if self.name == "" or self.username == "" or not self.password or self.isAdmin == "":
+        if self.name == "" or self.username == "" or not self.password or self.isAdmin == "" :
             return True  
 
-    def check_field_numeric(self):
+    def check_field_numeric(self) :
         regex = re.compile(r'[0-9]')
-        if (regex.search(self.name) == None):
-            return True 
-        else:
-            return False 
-
+        return  regex.search(self.name)
+            
     @staticmethod
-    def generate_hash(password):
+    def generate_hash(password) :
         return sha256.hash(password)
 
     @staticmethod
-    def verify_hash(password,hash):
-        return sha256.verify(password,hash)
+    def verify_hash(password,hash) :
+        return sha256.verify(password, hash)
 
-    def check_empty_space(self):
-        if  re.search(r'[\s]',self.name) or re.search(r'[\s]',self.username) or re.search(r'[\s]',self.password)  or re.search(r'[\s]',self.isAdmin) :
-            return True
+    def check_empty_space(self) :
+        return re.search(r'[\s]', self.name) or re.search(r'[\s]', self.username) or re.search(r'[\s]', self.password)  or re.search(r'[\s]', self.isAdmin) 
+             
