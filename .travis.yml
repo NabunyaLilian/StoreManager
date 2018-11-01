@@ -13,7 +13,7 @@ install:
 # command to run tests
 
 before_script:
-  - "psql -c 'create database storedb;' -U postgres"
+  - "psql -c 'create database testdb;' -U postgres"
 
 script: 
   - pytest --cov=.

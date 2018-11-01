@@ -19,9 +19,9 @@ class Product(Resource):
         product = Products.get_product_by_id(product_id)
         if product:
            return {
-                    {'product':product}
+                    {'product': product},200
                  }
-        return {"message":"product doesnot exist"} 
+        return {"message":"product doesnot exist"},404 
     @jwt_required    
     def put (self,product_id):
         """

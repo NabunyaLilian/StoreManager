@@ -19,7 +19,7 @@ class ProductList(Resource):
 
         """      
         products = Products.get_all_products()
-        return products 
+        return {'products': products }, 200
     
     @jwt_required
     def post(self):

@@ -34,7 +34,7 @@ class SignUp(Resource):
             
             return {
                     "message": "account created",
-                    "user":{"username": data["username"],"name": data['name']}
+                    "user":{"username": data["Username"],"firstname": data['FirstName']}
                     }, 201
 
         

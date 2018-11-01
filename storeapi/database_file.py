@@ -42,7 +42,9 @@ class DatabaseConnection:
                 price INTEGER NOT NULL, date VARCHAR(30) NOT NULL, product_id INTEGER REFERENCES products ON UPDATE CASCADE ON DELETE CASCADE ,user_id INTEGER REFERENCES store_users ON UPDATE CASCADE ON DELETE CASCADE )"""
         self.cursor.execute(query)
         return "sales table created"    
-db = DatabaseConnection()
-db.create_table_store_users()
-db.create_products_table()
-db.create_sales_table()
+    
+
+    def drop_table(self,table_name):
+        query = "DROP TABLE IF EXISTS "+ table_name +" cascade" 
+        self.cursor.execute(query)
+        return "table dropped"

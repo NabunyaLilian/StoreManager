@@ -44,7 +44,7 @@ class User:
         self.dict_cursor.execute(query)
         all = self.dict_cursor.fetchall()
         return all
-
+   
     @staticmethod
     def parse():
         parser = reqparse.RequestParser()

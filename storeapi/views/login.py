@@ -18,8 +18,8 @@ class LogIn(Resource):
                             "status": "true",
                             "message": "user logged in successfully",
                             "user":{"username": data["username"]}
-                            }, 200
-                return response
+                            }
+                return response,200
             return {"status": "fail", "error": "login failed"}, 401       
             
 

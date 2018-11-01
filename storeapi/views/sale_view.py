@@ -17,5 +17,8 @@ class SaleView(Resource):
         identity = get_jwt_identity()
         if identity['admin_status'] == 'True':
             sale = Sale.get_sale_by_id(sale_id)
-            return sale
+            if sale:
+                return {'sale':sale},200
+            else:
+                return {'Error':'sale doesnot exist'}, 404
 
