@@ -2,20 +2,20 @@
    A file for defining sale resource
 """
 from flask_restful import Resource
-from storeapi.models.model import sales
-from storeapi.views.check import check_id
+from storeapi.models.sale import Sale
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
-class Sale(Resource):
+class SaleView(Resource):
     """
        class for sale resource
    """
+    @jwt_required
     def get(self, sale_id):
         """
            method to get a specific sale
         """
-        sale = check_id(sale_id , sales ,'sale_id') 
-        if sale:
-           return sale
-        return {'message':'resource not found'}
-      
-    
+        identity = get_jwt_identity()
+        if identity['admin_status'] == 'True':
+            sale = Sale.get_sale_by_id(sale_id)
+            return sale
+

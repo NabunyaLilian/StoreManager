@@ -1,10 +1,13 @@
 """
    A file for defining products list view resource
 """
-from flask import request
+from flask_restful import reqparse
 from flask_restful import Resource
-from storeapi.models.model import products
-from storeapi.views.validation import validate
+
+from storeapi.models.products import Products
+from flask_jwt_extended import jwt_required, get_jwt_identity
+from psycopg2.extras import RealDictCursor
+
 
 class ProductList(Resource):
     """
@@ -13,31 +16,41 @@ class ProductList(Resource):
     def get(self):
         """
         method to get all products
-        """
-        return {'products': products}
 
+        """      
+        products = Products.get_all_products()
+        return products 
+    
+    @jwt_required
     def post(self):
         """
         method to create a product
         """
-        if request.content_type == 'application/json':
-                data = request.get_json()
-                name = data.get('name')
-                quantity = data.get('quantity')
-                price = data.get('price')
-                min_quantity = data.get('min_quantity')
-                category = data.get('category')
-                string_data = [name, category]
-                int_data = [quantity, price, min_quantity]
+        data = Products.parse()
+        product_obj = Products(data['name'],data['quantity'],data['price'],data['min_quantity'],data['category'])
+        user_identity = get_jwt_identity()
+        if not user_identity['admin_status'] :
+           return {"Error":"Access denied"}
+        if product_obj.check_empty_fields() == True:
+            return {"Error":"Field empty field detected, make sure all fields have values"}, 400    
+        if product_obj.search_special_characters() == False:
+            return {"Error":"No string should contain special characters"},400                  
+        if product_obj.check_field_numeric() == False :
+                return {"Error":"name should not contain numbers"},400 
+        if product_obj.check_empty_space():
+                return {"Error":"space detected in one of the fields"},400 
                 
-                if ('name' in data and 'quantity' in data and 'price' in data and 'min_quantity' in data and 'category' in data):
-                    if validate(string_data,int_data):
-                        if (name != "" and quantity != "" and price != "" and min_quantity != "" and category != ""):
-                            product = {'product_id': len(products) +1 , 'name': name, 'quantity':quantity, 'price':price, 'min_quantity':min_quantity, 'category': category}
-                            products.append(product)
-                            return product, 201
-                        return {"Error":"Field empty, make sure all the fields have values"}, 400    
-                    return {"message":"Enter the right data type values please"}, 400
-                return {'Error':'Missing field, make sure you have; name, quantity, price, min_quantity and category'}, 400    
-    
-    
+        product = product_obj.create_product()
+        if product:
+            response =  {
+                                "message": "user product created successfully",
+                                "user": {
+                                    "name": data['name'],
+                                    "price": data['price'] }
+                            }, 201
+            return response
+        else:
+            return {'error':'something went wrong'} 
+
+
+        
