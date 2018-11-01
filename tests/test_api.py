@@ -4,6 +4,7 @@ from flask import json
 from storeapi import app
 from storeapi.database_file import DatabaseConnection
 
+
 class Tests(TestCase):
     """
        Class to test api
@@ -54,6 +55,14 @@ class Tests(TestCase):
         assert json_data['price'] == 2000000
         assert json_data['min_quantity'] == 10
         assert json_data['category'] == "laptop"
+    
+    def test_add_product_with_empty_name(self):
+        """
+           method to add a product with empty name
+        """  
+        post_result = self.client().post('api/v1/products', content_type = 'application/json',
+                                         data=json.dumps(dict(name="", quantity=30, price=5000000, min_quantity=10, category="laptop")))
+        self.assertEqual(post_result.status_code, 400)     
 
     def test_get_specific_sale(self):
         """

@@ -2,8 +2,10 @@
    A file for defining product_view resource
 """
 from flask_restful import Resource
+
 from storeapi.models.products import Products
 from flask_jwt_extended import jwt_required, get_jwt_identity
+
 
 class Product(Resource):
     """
@@ -13,6 +15,7 @@ class Product(Resource):
         """
            method to get a specific product
         """
+
         product = Products.get_product_by_id(product_id)
         return product
 
@@ -57,3 +60,4 @@ class Product(Resource):
             return {"message": "product is successfully deleted"},200
         else:
             return {"Error":"product not found"},404    
+

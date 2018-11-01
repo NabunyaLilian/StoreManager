@@ -3,6 +3,7 @@
 """
 from flask_restful import reqparse
 from flask_restful import Resource
+
 from storeapi.models.products import Products
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from psycopg2.extras import RealDictCursor
@@ -15,6 +16,7 @@ class ProductList(Resource):
     def get(self):
         """
         method to get all products
+
         """      
         products = Products.get_all_products()
         return products 
@@ -49,6 +51,6 @@ class ProductList(Resource):
             return response
         else:
             return {'error':'something went wrong'} 
-    
+
 
         

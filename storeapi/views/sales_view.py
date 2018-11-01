@@ -6,6 +6,7 @@ from flask_restful import Resource
 from storeapi.models.sale import Sale
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
+
 class Sales(Resource):
     """
        class for the sale resource
@@ -50,3 +51,4 @@ class Sales(Resource):
             return response
         else:
             return {'error':'something went wrong'} 
+
