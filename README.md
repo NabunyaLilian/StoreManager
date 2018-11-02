@@ -14,8 +14,6 @@ Store Manager is a web application that helps store owners manage sales and prod
 - Store owner can add, modify and delete products. 
 
 
-
-
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
