@@ -149,6 +149,19 @@ class ApiTests(TestCase):
         self.assertEqual((json.loads(post_result.data))['message'],"sale record made successfully")
         (json.loads(post_result.data))['product'] == { "name": "Hp", "price": "500000" }
         
+    
+    def test_empty_sale(self):
+        """
+           method to add specific sale
+        """  
+        token=(json.loads(self.admin_login_response.data))['access_token']
+        post_result = self.client.post('/api/v2/sales', content_type = 'application/json', headers=dict(Authorization='Bearer '+ token),
+                                         data=json.dumps(dict(name="", quantity=30, price=500000, date='16/10/2018', store_attendant='John')))
+
+        self.assertEqual((json.loads(post_result.data))['Error'],"Field empty field detected, make sure all fields have values")
+        self.assertEqual(post_result.status_code,400)
+        
+            
 def tearDown(self):
         db = DatabaseConnection()
         db.drop_table('store_users')

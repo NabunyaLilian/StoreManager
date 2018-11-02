@@ -15,9 +15,9 @@ cursor = db.cursor
 dict_cursor = db.dict_cursor
 
 
-class User:                                                                                                                                                                                                                                                                                                                                              
+class User :                                                                                                                                                                                                                                                                                                                                              
 
-    def __init__(self, username, name, password, isAdmin):
+    def __init__(self, username, name, password, isAdmin) :
         self.name = name
         self.username = username
         self.password = password
@@ -27,23 +27,16 @@ class User:
         self.cursor = self.db.cursor
 
     @staticmethod   
-    def get_user_by_username(username):
-
-        query = "SELECT * FROM store_users WHERE username = %s "
-        dict_cursor.execute(query, [username])
-        row = dict_cursor.fetchone()
-        return row
+    def get_user_by_username(username) :
+        dict_cursor.execute("SELECT * FROM store_users WHERE username = %s ",(username,))
+        return dict_cursor.fetchone()
 
     def create_user(self):
-        query = "INSERT INTO store_users (name, username, password, isAdmin) VALUES ('{}', '{}','{}','{}')".format(self.name,self.username,User.generate_hash(self.password),self.isAdmin)
-        self.cursor.execute(query)
-        return True
-
-    def get_all_users(self):
-        query = "SELECT * FROM store_users"
-        self.dict_cursor.execute(query)
-        all = self.dict_cursor.fetchall()
-        return all
+        return self.cursor.execute("INSERT INTO store_users (name, username, password, isAdmin) VALUES (%s, %s,%s,%s)",(self.name,self.username,User.generate_hash(self.password),self.isAdmin))
+         
+    def get_all_users(self) :
+        self.dict_cursor.execute("SELECT * FROM store_users")
+        return self.dict_cursor.fetchall()
    
     @staticmethod
     def parse():
@@ -55,48 +48,37 @@ class User:
         data = parser.parse_args()
         return data
     
-    def validate_data_type(self):
-        if not isinstance(self.name, str) or  not isinstance(self.username, str):
-           return True
-       
+    def validate_data_type(self) :
+        return  isinstance(self.name, str) or isinstance(self.username, str)
+          
     def search_special_characters(self):
-        regex = re.compile(r'[@_!#$%^&*()<>?/\|}{~:]')  #creates a regular expression object to be used in matching
-        if (regex.search(self.username) is None) and (regex.search(self.name) is None):
-            return True
-        else:
-            return False
+        regex = re.compile(r'[@_!#$%^&*()<>?/\|}{~:]')  
+        return (regex.search(self.username)) and (regex.search(self.name))
 
-    def check_empty_fields(self):
-        if self.name == "" or self.username == "" or not self.password or self.isAdmin == "":
+    def check_empty_fields(self) :
+        if self.name == "" or self.username == "" or not self.password or self.isAdmin == "" :
             return True  
 
-    def check_field_numeric(self):
+    def check_field_numeric(self) :
         regex = re.compile(r'[0-9]')
-        if (regex.search(self.name) == None):
-            return True 
-        else:
-            return False 
-
+        return regex.search(self.name) 
+            
     @staticmethod
-    def generate_hash(password):
+    def generate_hash(password) :
         return sha256.hash(password)
 
     @staticmethod
-    def verify_hash(password,hash):
+    def verify_hash(password,hash) :
         return sha256.verify(password,hash)
 
-    def check_empty_space(self):
-        if  re.search(r'[\s]',self.name) or re.search(r'[\s]',self.username) or re.search(r'[\s]',self.password)  or re.search(r'[\s]',self.isAdmin) :
-            return True
+    def check_empty_space(self) :
+        return  re.search(r'[\s]',self.name) or re.search(r'[\s]',self.username) or re.search(r'[\s]',self.password)  or re.search(r'[\s]',self.isAdmin) 
+       
     @staticmethod
-    def check_length_restrictions(fields, values):
+    def check_length_restrictions(fields, values) :
         message = []
-        for i in range(0, len(fields)):
-
-            if values[i] and len(values[i]) > 255:
+        for i in range(0, len(fields)) :
+            if values[i] and len(values[i]) > 255 :
                 ans = fields[i] + "'s max length is 255 characters"
-                message.append(ans)
-        if message:
-            return ' , '.join(message)
-        else:
-            return False
+            return ' , '.join(message.append(ans))
+

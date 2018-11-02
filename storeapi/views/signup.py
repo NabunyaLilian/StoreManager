@@ -15,15 +15,15 @@ class SignUp(Resource):
         user_identity = get_jwt_identity()
         if not user_identity['admin_status'] :
             return {"Error":"Access denied"}
-        if user.check_empty_fields() == True:
+        if user.check_empty_fields() :
             return {"Error":"Field empty field detected, make sure all fields have values"}, 400    
-        if user.validate_data_type == False:
+        if not user.validate_data_type :
             return {"Error":"name should only contain alphabetical letters"},400 
-        if user.search_special_characters() == False:
+        if not user.search_special_characters() :
             return {"Error":"No string should contain special characters"},400                  
-        if user.check_field_numeric() == False :
+        if user.check_field_numeric() != None :
                 return {"Error":"name should not contain numbers"},400 
-        if user.check_empty_space():
+        if user.check_empty_space() :
                 return {"Error":"space detected in one of the fields"},400 
         if User.check_length_restrictions(['Name','Username','Password'],[data['Username'],data['FirstName'],data['Password']]):
                 return {"Error":"length should be 255 charactres"},400
