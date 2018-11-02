@@ -100,8 +100,7 @@ class ApiTests(TestCase):
         self.assertEqual((json.loads(response.data))['message'],"product created successfully" )
         self.assertEqual((json.loads(response.data))['user'],{ "name": "Hp", "price": "2000" })
                                    
-                                    
-    
+                                     
     def test_add_product_with_empty_name(self):
 
         """
@@ -111,7 +110,8 @@ class ApiTests(TestCase):
         post_result = self.client.post('api/v2/products', content_type = 'application/json', headers=dict(Authorization='Bearer '+ token),
                                          data=json.dumps(dict(name="", quantity=30, price=5000000, min_quantity=10, category="laptop")))
         self.assertEqual(post_result.status_code, 400)    
-
+        self.assertEqual((json.loads(post_result.data))["Error"],"Field empty field detected, make sure all fields have values")
+        
     def test_add_product_with_special_characters(self):
         """
            method to add a product with empty name
@@ -120,6 +120,7 @@ class ApiTests(TestCase):
         post_result = self.client.post('api/v2/products', content_type = 'application/json', headers=dict(Authorization='Bearer '+ token),
                                          data=json.dumps(dict(name="#hp", quantity=30, price=5000000, min_quantity=10, category="laptop")))
         self.assertEqual(post_result.status_code, 400)         
+        self.assertEqual((json.loads(post_result.data))["Error"],"No string should contain special characters")
 
     def test_get_specific_sale(self):
         """
@@ -145,7 +146,7 @@ class ApiTests(TestCase):
         post_result = self.client.post('/api/v2/sales', content_type = 'application/json', headers=dict(Authorization='Bearer '+ token),
                                          data=json.dumps(dict(name="HP", quantity=30, price=500000, date='16/10/2018', store_attendant='John')))
 
-        (json.loads(post_result.data))['message'] == "sale record made successfully"
+        self.assertEqual((json.loads(post_result.data))['message'],"sale record made successfully")
         (json.loads(post_result.data))['product'] == { "name": "Hp", "price": "500000" }
         
 def tearDown(self):
