@@ -88,3 +88,15 @@ class User:
     def check_empty_space(self):
         if  re.search(r'[\s]',self.name) or re.search(r'[\s]',self.username) or re.search(r'[\s]',self.password)  or re.search(r'[\s]',self.isAdmin) :
             return True
+    @staticmethod
+    def check_length_restrictions(fields, values):
+        message = []
+        for i in range(0, len(fields)):
+
+            if values[i] and len(values[i]) > 255:
+                ans = fields[i] + "'s max length is 255 characters"
+                message.append(ans)
+        if message:
+            return ' , '.join(message)
+        else:
+            return False

@@ -111,7 +111,16 @@ class ApiTests(TestCase):
         token=(json.loads(self.admin_login_response.data))['access_token']
         post_result = self.client.post('api/v2/products', content_type = 'application/json', headers=dict(Authorization='Bearer '+ token),
                                          data=json.dumps(dict(name="", quantity=30, price=5000000, min_quantity=10, category="laptop")))
-        self.assertEqual(post_result.status_code, 400)     
+        self.assertEqual(post_result.status_code, 400)    
+
+    def test_add_product_with_special_characters(self):
+        """
+           method to add a product with empty name
+        """  
+        token=(json.loads(self.admin_login_response.data))['access_token']
+        post_result = self.client.post('api/v2/products', content_type = 'application/json', headers=dict(Authorization='Bearer '+ token),
+                                         data=json.dumps(dict(name="#hp", quantity=30, price=5000000, min_quantity=10, category="laptop")))
+        self.assertEqual(post_result.status_code, 400)         
 
     def test_get_specific_sale(self):
         """

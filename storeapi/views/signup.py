@@ -25,7 +25,8 @@ class SignUp(Resource):
                 return {"Error":"name should not contain numbers"},400 
         if user.check_empty_space():
                 return {"Error":"space detected in one of the fields"},400 
-
+        if User.check_length_restrictions(['Name','Username','Password'],[data['Username'],data['FirstName'],data['Password']]):
+                return {"Error":"length should be 255 charactres"},400
         user_information = User.get_user_by_username(data['Username']) 
         if  user_information: 
             return {"message":"username already exists"}
