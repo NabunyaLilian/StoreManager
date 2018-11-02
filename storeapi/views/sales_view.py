@@ -44,7 +44,7 @@ class Sales(Resource):
         if sale:
             response =  {
                                 "message": "sale record made successfully",
-                                "user": {
+                                "product": {
                                     "name": data['name'],
                                     "price": data['price'] }
                             }, 201

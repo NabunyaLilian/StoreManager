@@ -47,10 +47,11 @@ class ApiTests(TestCase):
                                  content_type='application/json', headers=dict(Authorization='Bearer '+ token),
                                  data=json.dumps(dict(Username="goerge", FirstName="joe",Password="1234",isAdmin="True"),)   
                              )
-        reply = json.loads(response.data)
-        print(reply)
         self.assertEqual(response.status_code,201)   
-                      
+
+        self.assertEqual((json.loads(response.data))['message'],"account created" ) 
+        self.assertEqual((json.loads(response.data))['user'],{ "username": "goerge", "firstname": "joe" }) 
+                                           
         
     def test_get_specific_item(self):
         """
@@ -61,12 +62,11 @@ class ApiTests(TestCase):
                                  content_type='application/json', headers=dict(Authorization='Bearer '+ token),
                                  data=json.dumps(dict(name="Hp", quantity=15,price=2000,min_quantity =33,category="laptop"))   
                              )   
-             
-        print (response.data)                 
+                             
         self.assertEqual(response.status_code, 201) 
 
-        # get_result = self.client.get('/api/v2/product/1', content_type = 'application/json', headers=dict(Authorization='Bearer '+ token))
-        # self.assertEqual(get_result.status_code, 200)
+        get_result = self.client.get('/api/v2/product/1', content_type = 'application/json', headers=dict(Authorization='Bearer '+ token))
+        self.assertEqual(get_result.status_code, 200)
 
 
     def test_get_non_existant_item(self) :  
@@ -94,17 +94,16 @@ class ApiTests(TestCase):
         response = self.client.post("/api/v2/products",
                                  content_type='application/json', headers=dict(Authorization='Bearer '+ token),
                                  data=json.dumps(dict(name="Hp", quantity=15,price=2000,min_quantity =33,category="laptop"))   
-                             ) 
-        print(response.data)                     
-        self.assertEqual(response.status_code, 201)   
-        # json_data = json.loads(response.data)      
-        # assert json_data (user['name']) == "Hp"
-        # assert json_data['quantity'] == 15
-        # assert json_data['price'] == 2000
-        # assert json_data['min_quantity'] == 33
-        # assert json_data['category'] == "laptop"
+                             )                     
+        self.assertEqual(response.status_code, 201)
+
+        self.assertEqual((json.loads(response.data))['message'],"product created successfully" )
+        self.assertEqual((json.loads(response.data))['user'],{ "name": "Hp", "price": "2000" })
+                                   
+                                    
     
     def test_add_product_with_empty_name(self):
+
         """
            method to add a product with empty name
         """  
@@ -129,15 +128,7 @@ class ApiTests(TestCase):
         token=(json.loads(self.admin_login_response.data))['access_token']
         get_result = self.client.get('/api/v2/sale/1', content_type = 'application/json', headers=dict(Authorization='Bearer '+ token))
         self.assertEqual(get_result.status_code, 200)
-        
-    # def test_get_non_existant_sale(self) :  
-    #     """
-    #        method to test an item that does not exist
-    #     """
-    #     token=(json.loads(self.admin_login_response.data))['access_token']
-    #     get_result = self.client.get('/api/v2/sale/100' , content_type = 'application/json', headers=dict(Authorization='Bearer '+ token))
-    #     self.assertEqual(get_result.status_code, 404)
-
+   
     def test_get_all_sales(self):
         """
            method to get all sales
@@ -153,13 +144,10 @@ class ApiTests(TestCase):
         token=(json.loads(self.admin_login_response.data))['access_token']
         post_result = self.client.post('/api/v2/sales', content_type = 'application/json', headers=dict(Authorization='Bearer '+ token),
                                          data=json.dumps(dict(name="HP", quantity=30, price=500000, date='16/10/2018', store_attendant='John')))
-        self.assertEqual(post_result.status_code, 201)                    
-    #     json_data = json.loads(post_result.data)      
-    #     assert json_data['name'] == "HP"
-    #     assert json_data['quantity'] == 30
-    #     assert json_data['price'] == 500000
-    #     assert json_data['date'] == "16/10/2018"
-    #     assert json_data['store_attendant'] == "John"
+
+        (json.loads(post_result.data))['message'] == "sale record made successfully"
+        (json.loads(post_result.data))['product'] == { "name": "Hp", "price": "500000" }
+        
 def tearDown(self):
         db = DatabaseConnection()
         db.drop_table('store_users')

@@ -14,8 +14,7 @@ class DatabaseConnection:
             self.conn.autocommit = True
             self.cursor = self.conn.cursor()
             self.dict_cursor = self.conn.cursor(cursor_factory=RealDictCursor)
-            print("connected yesssssssssssssssss")
-            print(dbname)
+            # print(dbname)
 
         except:
             print("can not connect successfully")
@@ -47,4 +46,4 @@ class DatabaseConnection:
     def drop_table(self,table_name):
         query = "DROP TABLE IF EXISTS "+ table_name +" cascade" 
         self.cursor.execute(query)
-        return "table dropped"
+        return "table"
