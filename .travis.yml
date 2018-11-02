@@ -1,7 +1,6 @@
 language: python
 python:
   - "3.6.0"
-# command to install dependencies
 services:
   - postgresql
 
@@ -10,7 +9,6 @@ env:
   -APP_SETTINGS=testing  
 install:
   - pip install -r requirements.txt 
-# command to run tests
 
 before_script:
   - "psql -c 'create database testdb;' -U postgres"
