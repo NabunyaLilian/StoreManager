@@ -1,11 +1,9 @@
-import psycopg2
 from flask_restful import reqparse
 import re
 import sys
 import os.path
-sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/..")
 import database_file
-from passlib.hash import pbkdf2_sha256 as sha256
+sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/..")
 
 
 db = database_file.DatabaseConnection()
@@ -16,82 +14,64 @@ dict_cursor = db.dict_cursor
 class Products:
 
     def __init__(self, name, quantity, price, min_quantity, category):
-        self.name=name
-        self.quantity=quantity
-        self.price=price
-        self.min_quantity=min_quantity
-        self.category=category
-        self.db=database_file.DatabaseConnection()
-        self.dict_cursor=self.db.dict_cursor
-        self.cursor=self.db.cursor
+        self.name = name
+        self.quantity = quantity
+        self.price = price
+        self.min_quantity = min_quantity
+        self.category = category
 
     def create_product(self):
-        query = """ INSERT INTO products (name, quantity, price, min_quantity, category) 
-                    VALUES ('{}','{}','{}','{}','{}')""".format(self.name, self.quantity, self.price, self.min_quantity, self.category) 
-        self.dict_cursor.execute(query)
+        cursor.execute(""" INSERT INTO products (name, quantity, price, min_quantity, category)
+                       VALUES (%s, %s,%s,%s,%s)""",
+                       (self.name, self.quantity, self.price,
+                        self.min_quantity, self.category))
         return True
 
-    def update_products(self,product_id):
-        query = "UPDATE products SET name ='{}', quantity = '{}', price ='{}', min_quantity ='{}', category = '{}' where product_id ='{}'".format(self.name, self.quantity, self.price, self.min_quantity, self.category,product_id)
-        dict_cursor.execute(query)
+    def update_products(self, product_id):
+        dict_cursor.execute("UPDATE products SET name = %s, quantity = %s, price = %s, min_quantity = %s, category = %s \
+        where product_id = %s", (self.name, self.quantity, self.price, self.min_quantity, self.category, product_id))
         return True
 
     @staticmethod
     def delete_product(product_id):
-        query = "DELETE from products WHERE product_id = '{}'".format(product_id)
-        dict_cursor.execute(query)
-        return True
+        return dict_cursor.execute("DELETE from products WHERE product_id = %s ", (product_id, ))
 
-    @staticmethod    
+    @staticmethod
     def get_product_by_id(product_id):
-        query = """ SELECT * FROM products WHERE product_id = {} """ .format(product_id)
-        dict_cursor.execute(query)
-        row = dict_cursor.fetchone()
-        return row
+        dict_cursor.execute(""" SELECT * FROM products WHERE product_id = %s """, (product_id, ))
+        return dict_cursor.fetchone()
 
     @staticmethod
     def get_all_products():
-        query = "SELECT * FROM products"
-        dict_cursor.execute(query)
-        all = dict_cursor.fetchall()
-        return all
+        dict_cursor.execute("SELECT * FROM products")
+        return dict_cursor.fetchall()
 
     @staticmethod
     def parse():
         parser = reqparse.RequestParser()
-        parser.add_argument('name', help ='This field cannot be left blank', required = True)
-        parser.add_argument('price', help ='This field cannot be left blank', required = True)
-        parser.add_argument('quantity', help ='This field cannot be left blank', required = True)
-        parser.add_argument('min_quantity', help ='This field cannot be left blank', required = True)   
-        parser.add_argument('category', help ='This field cannot be left blank', required = True)
+        parser.add_argument('name', help='This field cannot be left blank', required=True)
+        parser.add_argument('price', help='This field cannot be left blank', required=True)
+        parser.add_argument('quantity', help='This field cannot be left blank', required=True)
+        parser.add_argument('min_quantity', help='This field cannot be left blank', required=True)
+        parser.add_argument('category', help='This field cannot be left blank', required=True)
         data = parser.parse_args()
         return data
 
     def validate_data_type(self):
-        a = [self.name, self.price, self.quantity, self.min_quantity, self.category]
-        if all(isinstance(x, str) for x in a):
-           return True
+        return isinstance(self.name, str) or isinstance(self.category, str)
 
     def search_special_characters(self):
-        regex = re.compile(r'[@_!#$%^&*()<>?/\|}{~:]')  #creates a regular expression object to be used in matching
-        if (regex.search(self.name) is None) and (regex.search(self.category) is None) :      
-            return True
-        else:
-            return False
+        regex = re.compile(r'[@_!#$%^&*()<>?/\|}{~:]')
+        return (regex.search(self.name)) or (regex.search(self.category))
 
     def check_empty_fields(self):
-        if self.name == "" or  not self.quantity or not self.price or not self.min_quantity or self.category == "" :
-            return True  
+        if self.name == "" or not self.quantity or not self.price or not self.min_quantity or self.category == "":
+            return True
 
     def check_field_numeric(self):
         regex = re.compile(r'[0-9]')
-        if (regex.search(self.name) is None):
-            return True 
-        else:
-            return False
-    def check_empty_space(self):
-        if  re.search(r'[\s]',self.name) or re.search(r'[\s]',self.quantity) or re.search(r'[\s]',self.price)  or re.search(r'[\s]',self.min_quantity)  or re.search(r'[\s]',self.category) :
-            return True
- 
+        return regex.search(self.name)
 
-         
+    def check_empty_space(self):
+        if re.search(r'[\s]', self.name) or re.search(r'[\s]', self.quantity) or re.search(r'[\s]', self.price) or re.search(r'[\s]', self.min_quantity) or re.search(r'[\s]', self.category):
+            return True

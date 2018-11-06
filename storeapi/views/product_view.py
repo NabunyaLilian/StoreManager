@@ -30,16 +30,16 @@ class Product(Resource):
         data = Products.parse()
         product_obj = Products(data['name'],data['quantity'],data['price'],data['min_quantity'],data['category']) 
         user_identity = get_jwt_identity()
-        if not user_identity['admin_status'] :
-           return {"Error":"Access denied"}
-        if product_obj.check_empty_fields() == True:
+        if  user_identity['admin_status'] != 'True' :
+           return {"Error":"Access denied"}, 401
+        if product_obj.check_empty_fields() :
             return {"Error":"Field empty field detected, make sure all fields have values"}, 400    
-        if product_obj.search_special_characters() == False:
-            return {"Error":"No string should contain special characters"},400                  
-        if product_obj.check_field_numeric() == False :
-                return {"Error":"name should not contain numbers"},400 
-        if product_obj.check_empty_space():
-                return {"Error":"space detected in one of the fields"},400        
+        if product_obj.search_special_characters() :
+            return {"Error":"No string should contain special characters"}, 400                  
+        if product_obj.check_field_numeric() != None :
+                return {"Error":"name should not contain numbers"}, 400 
+        if product_obj.check_empty_space() :
+                return {"Error":"space detected in one of the fields"}, 400         
         new_product = product_obj.update_products(product_id) 
         if new_product:
             response =  {
@@ -51,7 +51,9 @@ class Product(Resource):
                                         "min_quantity":data['min_quantity'],
                                         "category": data['category'] }
                                 }, 202
-            return response                    
+            return response  
+        else:
+            return {'Error','Something went wrong'}, 406                  
 
     def delete(self,product_id):
         """
