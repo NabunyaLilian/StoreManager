@@ -61,3 +61,7 @@ class DatabaseConnection:
         self.cursor.execute(query)
         return "table"
 
+db = DatabaseConnection()
+db.create_table_store_users()
+db.create_products_table()
+db.create_sales_table()
