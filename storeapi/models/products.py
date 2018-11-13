@@ -2,8 +2,8 @@ from flask_restful import reqparse
 import re
 import sys
 import os.path
-import database_file
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/..")
+import database_file
 
 
 db = database_file.DatabaseConnection()
@@ -33,6 +33,11 @@ class Products:
         return True
 
     @staticmethod
+    def update_product(quantity, product_id):
+        dict_cursor.execute("UPDATE products SET quantity = %s WHERE product_id = %s", (quantity, product_id))
+        return True
+    
+    @staticmethod
     def delete_product(product_id):
         return dict_cursor.execute("DELETE from products WHERE product_id = %s ", (product_id, ))
 
@@ -42,18 +47,28 @@ class Products:
         return dict_cursor.fetchone()
 
     @staticmethod
+    def get_product_by_name(name):
+        dict_cursor.execute(""" SELECT * FROM products WHERE name = %s """, (name, ))
+        return dict_cursor.fetchone()    
+
+    @staticmethod
+    def get_quantity_by_id(product_id):
+        dict_cursor.execute(""" SELECT quantity, min_quantity FROM products WHERE product_id = %s """, (product_id, ))
+        return dict_cursor.fetchone()        
+
+    @staticmethod
     def get_all_products():
         dict_cursor.execute("SELECT * FROM products")
         return dict_cursor.fetchall()
-
+    
     @staticmethod
     def parse():
         parser = reqparse.RequestParser()
-        parser.add_argument('name', help='This field cannot be left blank', required=True)
-        parser.add_argument('price', help='This field cannot be left blank', required=True)
-        parser.add_argument('quantity', help='This field cannot be left blank', required=True)
-        parser.add_argument('min_quantity', help='This field cannot be left blank', required=True)
-        parser.add_argument('category', help='This field cannot be left blank', required=True)
+        parser.add_argument('Name', help='This field cannot be left blank', required=True)
+        parser.add_argument('Price', help='This field cannot be left blank', required=True)
+        parser.add_argument('Quantity', help='This field cannot be left blank', required=True)
+        parser.add_argument('Min_quantity', help='This field cannot be left blank', required=True)
+        parser.add_argument('Category', help='This field cannot be left blank', required=True)
         data = parser.parse_args()
         return data
 

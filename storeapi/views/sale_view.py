@@ -5,6 +5,7 @@ from flask_restful import Resource
 from storeapi.models.sale import Sale
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
+
 class SaleView(Resource):
     """
        class for sale resource
@@ -18,7 +19,6 @@ class SaleView(Resource):
         if identity['admin_status'] == 'True':
             sale = Sale.get_sale_by_id(sale_id)
             if sale:
-                return {'sale':sale},200
+                return {'Sale': sale}, 200
             else:
-                return {'Error':'sale doesnot exist'}, 404
-
+                return {'Error': 'Sale record doesnot exist'}, 404

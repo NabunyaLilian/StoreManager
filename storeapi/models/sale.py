@@ -14,17 +14,16 @@ dict_cursor = db.dict_cursor
 
 
 class Sale:
-    def __init__(self,name,quantiy,price,date) :
+    def __init__(self,name,quantiy,date) :
         self.name = name
         self.quantity = quantiy
-        self.price = price
         self.date = date
         self.db = database_file.DatabaseConnection()
         self.dict_cursor = self.db.dict_cursor
         self.cursor = self.db.cursor
 
-    def create_sale(self) :
-        query = "INSERT INTO sales (name, quantity, price, date) VALUES ('{}', '{}','{}','{}')".format(self.name,self.quantity,self.price,self.date)
+    def create_sale(self,userId,price) :
+        query = "INSERT INTO sales (name, quantity, price, date, user_id) VALUES ('{}', '{}','{}','{}','{}')".format(self.name,self.quantity,price,self.date,userId)
         self.cursor.execute(query)
         return True
 
@@ -38,10 +37,9 @@ class Sale:
     @staticmethod
     def parse() :
         parser = reqparse.RequestParser()
-        parser.add_argument('name', help ='This field cannot be left blank', required = True)
-        parser.add_argument('quantity', help ='This field cannot be left blank', required = True)
-        parser.add_argument('price', help ='This field cannot be left blank', required = True)
-        parser.add_argument('date', help ='This field cannot be left blank', required = True)
+        parser.add_argument('Name', help ='This field cannot be left blank', required = True)
+        parser.add_argument('Quantity', help ='This field cannot be left blank', required = True)
+        parser.add_argument('Date', help ='This field cannot be left blank', required = True)
         data = parser.parse_args()
         return data
 
@@ -54,8 +52,7 @@ class Sale:
 
     def validate_data_type(self) :
         a = [self.name,self.date]
-        b = [self.quantity, self.price]
-        if all(isinstance(x, str) for x in a) and all(isinstance(x, int) for x in b) :
+        if all(isinstance(x, str) for x in a):
            return True
     
     def search_special_characters(self):
@@ -66,7 +63,7 @@ class Sale:
             return False          
 
     def check_empty_fields(self):
-        if self.name == "" or  self.quantity == "" or  self.price == "" or self.date == "" :
+        if self.name == "" or  self.quantity == "" or self.date == "" :
             return True
 
     def check_field_numeric(self):
@@ -77,7 +74,7 @@ class Sale:
             return False
 
     def check_empty_space(self) :
-        if  re.search(r'[\s]',self.name) or re.search(r'[\s]',self.quantity) or re.search(r'[\s]',self.price)  or re.search(r'[\s]',self.date) :
+        if  re.search(r'[\s]',self.name) or re.search(r'[\s]',self.quantity) or re.search(r'[\s]',self.date):
             return True
 
     
