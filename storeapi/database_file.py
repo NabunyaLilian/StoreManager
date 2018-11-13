@@ -13,7 +13,7 @@ class DatabaseConnection:
                 pwd = 'password'
                 host = 'localhost'
                 port = '5433'
-            elif os.getenv('heroku') == "testing":
+            elif os.getenv('heroku') == "database":
                 dbname = 'dao0hl0ucpa2te'
                 username = 'cegdozynwqmytn'
                 pwd = 'dfe0316e32339f8fc71e4b9d3b7fd3bc308fd3d89efd86c1d0d480f759e91090'
