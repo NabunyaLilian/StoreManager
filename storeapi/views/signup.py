@@ -26,7 +26,7 @@ class SignUp(Resource):
                 return {"Error": "Space detected in one of the fields"}, 400
         user_information = User.get_user_by_username(username)
         if user_information:
-            return {"Message": "Username already exists"}
+            return {"Message": "Username already exists"}, 400
         else:
             user.create_user()
             return {
