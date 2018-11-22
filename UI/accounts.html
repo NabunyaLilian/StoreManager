@@ -55,20 +55,21 @@
 <section>
   <div class="signup">
     <h1>Create Account</h1><br>
-    <form>
+    <form method="POST">
       <label>Username</label><input type="text" name="user" id = "username" required>
       <label>FirstName</label><input type="text" name="firstname" id = "firstname" required>
       <label>Password</label><input type="password" name="pass" id = "password" required>
         <label>isAdmin</label><select id = "isadmin">
-          <option value="true">True</option>
-          <option value="false">False</option>
+          <option value="True">True</option>
+          <option value="False">False</option>
         </select>
-        <input type="submit" name="login" value="submit" align = "center">
+        <input type="submit" name="login" value="submit" onclick="RegisterUser()">
     </form>
 
   </div>
  
 </section>
-<script src="js/myscript.js"></script>
+<!-- <script src="js/myscript.js"></script> -->
+<script src="js/user.js"></script>
 </body>
 </html>

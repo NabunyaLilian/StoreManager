@@ -1,11 +1,10 @@
 
 
 function loginUser(){
-var username = document.getElementById('email').value;
-var password = document.getElementById('password').value;
-alert(username);
-alert(password);
-const data = {"username":username, "password":password};
+var Username = document.getElementById('username').value;
+var Password = document.getElementById('password').value;
+
+const data = {"Username":Username, "Password":Password};
 
 
 fetch('https://lilianstoremanager-api.herokuapp.com/api/v2/auth/login', {
@@ -19,47 +18,48 @@ body: JSON.stringify(data)
 })
 .then((res) => res.json())
 .then(result => {
-// if(result.status_code === 200){
-// if(result['User']['username'] == "lianda"){
-//     localStorage.setItem("access-token",result.Access_token);
-//     window.location.href = 'admin_index.html';
-// }
-// else{
-//     localStorage.setItem("access-token",result.Access_token);
-//     window.location.href = 'store_attendant_index.html';
-// }
-// }
-alert(result);
+if(result['Message'] === "Login successful"){
+    if(result['User']['username'] == 'lianda'){
+        localStorage.setItem("access-token",result['Access_token']);
+        window.location.href = 'admin_index.html';
+    }
+    else{
+        localStorage.setItem("access-token",result['Access_token']);
+        window.location.href = 'store_attendant_index.html';
+}
+}
 
 })
 
 }
 
 function RegisterUser(){
-var username = document.getElementById('username').value;
-var firstname = document.getElementById('firstname').value;
-var password = document.getElementById('password').value;
-var isadmin = document.getElementById('isadmin').value;
-const data = {"username":username, "firstname":firstname, "password":password, "isadmin":isadmin};
-
-fetch('https://lilianstoremanager-api.herokuapp.com/api/v2/auth/signup', {
-method: 'POST',
-headers: {
-'Accept': 'application/json',
-'Content-Type': 'application/json'
-},
-
-cache: 'no-cache',
-body: JSON.stringify(data)
+var Username = document.getElementById('username').value;
+var FirstName = document.getElementById('firstname').value;
+var Password = document.getElementById('password').value;
+var isAdmin = document.getElementById('isadmin').value;
+const data = {"Username":Username, "FirstName":FirstName, "Password":Password, "isAdmin":isAdmin};
+alert(JSON.stringify(data))
+fetch('https://lilianstoremanager-api.herokuapp.com/api/v2/auth/signup',
+{
+    method:'POST',
+    body: JSON.stringify(data),
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        "Authorization":  localStorage.getItem("access-token")
+    },
+    cache:'no-cache'
 })
 .then((res) => res.json())
+alert(res)
 .then(result => {
-if(result.status_code === 201){
-alert(result.Message)
-}
-else{
-alert(result.Message)
-}
+    if(result['User']['Username'] === Username){
+        alert(result['Message'])
+    }
+    else{
+        alert(result['Message'])
+    }
 
 })
 
