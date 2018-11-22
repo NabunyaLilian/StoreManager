@@ -56,9 +56,14 @@
   <div class="signup">
     <h1>Create Account</h1><br>
     <form>
-        <input type="text" name="user" placeholder= "Username" required>
-        <input type="password" name="pass" placeholder="Password" required>
-        <input type="submit" name="login" value="submit" align="center">
+      <label>Username</label><input type="text" name="user" id = "username" required>
+      <label>FirstName</label><input type="text" name="firstname" id = "firstname" required>
+      <label>Password</label><input type="password" name="pass" id = "password" required>
+        <label>isAdmin</label><select id = "isadmin">
+          <option value="true">True</option>
+          <option value="false">False</option>
+        </select>
+        <input type="submit" name="login" value="submit" align = "center">
     </form>
 
   </div>

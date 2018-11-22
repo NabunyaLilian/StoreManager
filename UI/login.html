@@ -17,13 +17,17 @@
 
       <h1>Welcome to Store Manager </h1><br>
 
-  <form>
+   <form>
     <input type="text" id="username" placeholder="username" required>
     <input type="password" id="password" placeholder="password" required>
-      <input type="submit" value="login" class="login login-submit">
-
-
-  </form>
+      <input type="submit" value="login" onclick="loginUser()" class="login login-submit">
+  </form> 
+  <!-- <div class="form-row">
+           
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <button onclick="loginUser()">LOGIN</button>
+  </div> -->
 
       <div class="login-help">
         <a href="#">If you want an account Register with Admin</a>
@@ -31,5 +35,6 @@
   </div>
   
   </body>
-<script src="js/main.js"></script>
+<!-- <script src="js/main.js"></script> -->
+<script src="js/user.js"></script>
 </html>
