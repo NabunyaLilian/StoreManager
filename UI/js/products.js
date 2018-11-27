@@ -1,6 +1,6 @@
 //  method to fetch products 
     
-fetch('http://127.0.0.1:5000/api/v2/products', {
+fetch('https://lilianstoremanager-api.herokuapp.com/api/v2/products', {
     method: 'GET',
     headers: {
         'Accept': 'application/json',
@@ -43,7 +43,7 @@ fetch('http://127.0.0.1:5000/api/v2/products', {
 //function to fetch product
 function getProduct(event){ 
     event.preventDefault();
-    fetch('http://127.0.0.1:5000/api/v2/product/7', {
+    fetch('https://lilianstoremanager-api.herokuapp.com/api/v2/product/7', {
     method: 'GET',
     headers: {
     'Accept': 'application/json',
@@ -87,7 +87,7 @@ function AddProduct(event){
 
     const data = {"Name":Name, "Quantity":Quantity, "Price":Price, "Min_quantity":Min_quantity, "Category":Category};
     // alert(JSON.stringify(data))
-    fetch('http://127.0.0.1:5000/api/v2/products',
+    fetch('https://lilianstoremanager-api.herokuapp.com/api/v2/products',
     {
         method:'POST',
         body: JSON.stringify(data),
@@ -134,7 +134,7 @@ function EditProduct(event){
         // alert(JSON.stringify(data))
         // alert(id)
         // alert(localStorage.getItem("access-token"))
-        fetch('http://127.0.0.1:5000/api/v2/product/'+product_id,
+        fetch('https://lilianstoremanager-api.herokuapp.com/v2/product/'+product_id,
         {
             method:'PUT',
             body: JSON.stringify(data),
@@ -163,7 +163,7 @@ function EditProduct(event){
 
 function DeleteProduct(id){
         alert(id)
-        fetch('http://127.0.0.1:5000/api/v2/product/'+id,
+        fetch('https://lilianstoremanager-api.herokuapp.com/api/v2/product/'+id,
         {
             method:'DELETE',
             

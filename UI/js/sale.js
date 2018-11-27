@@ -3,7 +3,7 @@ function getSale(event){
     var search = document.getElementById('my_cart')
     alert(search)
     event.preventDefault();
-    fetch('http://127.0.0.1:5000/api/v2/sale/1', {
+    fetch('https://lilianstoremanager-api.herokuapp.com/api/v2/sale/1', {
         method: 'GET',
         headers: {
             'Accept': 'application/json',

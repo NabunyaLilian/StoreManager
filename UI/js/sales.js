@@ -7,7 +7,7 @@ function AddSales(event){
     const data = {"Name":Name, "Quantity":Quantity, "Date":date};
     // alert(JSON.stringify(data))
     // alert(localStorage.getItem("access-token"))
-    fetch('http://127.0.0.1:5000/api/v2/sales',
+    fetch('https://lilianstoremanager-api.herokuapp.com/api/v2/sales',
     {
         method:'POST',
         body: JSON.stringify(data),
@@ -33,7 +33,7 @@ function AddSales(event){
 
 
 
-fetch('http://127.0.0.1:5000/api/v2/sales', {
+fetch('https://lilianstoremanager-api.herokuapp.com/api/v2/sales', {
            method: 'GET',
            headers: {
                'Accept': 'application/json',

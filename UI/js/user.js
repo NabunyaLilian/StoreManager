@@ -5,7 +5,7 @@ var Username = document.getElementById('username').value;
 var Password = document.getElementById('password').value;
 const data = {"Username":Username, "Password":Password};
 
-fetch('http://127.0.0.1:5000/api/v2/auth/login', {
+fetch('https://lilianstoremanager-api.herokuapp.com/api/v2/auth/login', {
 method: 'POST',
 headers: {
 'Accept': 'application/json',
@@ -33,7 +33,7 @@ if(result['Message'] === "Login successful"){
 
 // function to fetch users
 
-fetch('http://127.0.0.1:5000/api/v2/products', {
+fetch('https://lilianstoremanager-api.herokuapp.com/api/v2/products', {
     method: 'GET',
     headers: {
         'Accept': 'application/json',
@@ -81,7 +81,7 @@ var isAdmin = document.getElementById('isadmin').value;
 const data = {"Username":Username, "FirstName":FirstName, "Password":Password, "isAdmin":isAdmin};
 // alert(JSON.stringify(data))
 // alert(localStorage.getItem("access-token"))
-fetch('http://127.0.0.1:5000/api/v2/auth/signup',
+fetch('https://lilianstoremanager-api.herokuapp.com/api/v2/auth/signup',
 {
     method:'POST',
     headers: {
@@ -110,7 +110,7 @@ fetch('http://127.0.0.1:5000/api/v2/auth/signup',
 
 // method to give admin rights
 function GiveRights(user_id){
-    fetch('http://127.0.0.1:5000/api/v2/admin/'+user_id,
+    fetch('https://lilianstoremanager-api.herokuapp.com/api/v2/admin/'+user_id,
     {
         method:'PUT',
         headers: {
@@ -140,7 +140,7 @@ function myRightsFunction() {
 
 //  method to fetch products 
     
-fetch('http://127.0.0.1:5000/api/v2/users', {
+fetch('https://lilianstoremanager-api.herokuapp.com/api/v2/users', {
     method: 'GET',
     headers: {
         'Accept': 'application/json',
