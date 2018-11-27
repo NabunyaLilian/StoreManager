@@ -18,58 +18,28 @@
   </ul>
 </header>
 <section>
-  <table id = store_attendants>
-  <tr>
-    <th>Name</th>
-    <th>Username</th>
-    <th>Password</th>
-    <th>Options</th>
-  </tr>
-  <tr>
-    <td>Apio Anna</td>
-    <td>Ann</td>
-    <td>password</td>
-    <td><button  onclick = "myRightsFunction()">Give Admin Rights</button></td>
-  </tr>
-  <tr>
-    <td>Atim Jessie</td>
-    <td>Jessy</td>
-    <td>1234</td>
-    <td><button onclick = "myRightsFunction()">Give Admin Rights</button></td>
-  </tr>
-    <tr>
-    <td>Mugisha John</td>
-    <td>John</td>
-    <td>23456789</td>
-    <td><button onclick = "myRightsFunction()" >Give Admin Rights</button></td>
-  </tr>
-  <tr>
-    <td>Kanyankole Richard</td>
-    <td>Richy</td>
-    <td>143</td>
-    <td><button onclick = "myRightsFunction()">Give Admin Rights</button></td>
-  </tr>
-</table>
+ <div id="users_table">
+
+ </div>
 
 </section>
 <section>
   <div class="signup">
     <h1>Create Account</h1><br>
     <form method="POST">
-      <label>Username</label><input type="text" name="user" id = "username" required>
-      <label>FirstName</label><input type="text" name="firstname" id = "firstname" required>
-      <label>Password</label><input type="password" name="pass" id = "password" required>
+      <label>Username</label><input type="text" name="user" id = "username" required><br/>
+      <label>FirstName</label><input type="text" name="firstname" id = "firstname" required><br/>
+      <label>Password</label><input type="password" name="pass" id = "password" required><br/>
         <label>isAdmin</label><select id = "isadmin">
           <option value="True">True</option>
           <option value="False">False</option>
         </select>
-        <input type="submit" name="login" value="submit" onclick="RegisterUser()">
+        <input type="submit" name="login" value="submit" onclick="RegisterUser(event)">
     </form>
 
   </div>
  
 </section>
-<!-- <script src="js/myscript.js"></script> -->
 <script src="js/user.js"></script>
 </body>
 </html>

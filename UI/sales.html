@@ -20,47 +20,18 @@
   <h1 id = 'heading'>Sales Records</h1> 
 <section>
   <form id="my_cart"style = "width:100%">
-  <input type="text" placeholder="Search sales by Store attendant" name="search" style="float:left;width:30%" >
-  <input type ="image" src="img/search.png" alt = 'submit' width="30" height="30" name="search-button">
+  <input type="number" placeholder="Search sales by id" name="search" id = "search" style="float:left;width:15%;height: 30px;" >
+  <input type ="image" src="img/search.png" alt = 'submit' width="30" height="30" name="search-button" onclick="getSale(event)">
  </form> 
- <table style="margin-top:20px;margin-left:135px">
-  <tr>
-    <th>Name</th>
-    <th>Quantity</th>
-    <th>Price</th>
-    <th>Date</th>
-    <th>Store Attendant</th>
-  </tr>
-  <tr>
-    <td>Laptops</td>
-    <td>50</td>
-    <td>$500</td>
-    <td>11/10/2018</td>
-    <td>John</td>
-  </tr>
-  <tr>
-    <td>Printers</td>
-    <td>30</td>
-    <td>$800</td>
-    <td>11/10/2018</td>
-    <td>John</td>
-  </tr>
-    <tr>
-    <td>Desktops</td>
-    <td>50</td>
-    <td>$500</td>
-    <td>11/10/2018</td>
-    <td>John</td>
-  </tr>
-  <tr>
-    <td>Routers</td>
-    <td>60</td>
-    <td>$500</td>
-    <td>11/10/2018</td>
-     <td>John</td>
-  </tr>
-</table>
-</section>
+ <div id="sales_table"> 
 
+ </div>
+</section>
+<script src="js/sales.js"></script>
+<script src="js/sale.js"></script>
 </body>
 </html>
+
+
+
+

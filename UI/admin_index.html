@@ -21,51 +21,11 @@
 </header>
   <h1 id = 'heading'>Products</h1> 
 <section>
- <table>
-  <button id="modalBtn" class="button" style = 'float:right; margin-right: 138px ;margin-top: -70px'> + Add product</button>
-  <tr>
-    <th>Name</th>
-    <th>Quantity</th>
-    <th>Price</th>
-    <th>Minimum Quantity</th>
-    <th>Category</th>
-    <th>Options</th>
-  </tr>
-  <tr>
-    <td>HP i5</td>
-    <td>50</td>
-    <td>$500</td>
-    <td>10</td>
-    <td>Laptop</td>
-    <td><button id="editBtn" class="button" >Edit</button>&nbsp &nbsp  <button id = 'delete-button'  onclick = "mydeleteFunction()">Delete</button></td>
-  </tr>
-  <tr>
-    <td>Canon primx 494</td>
-    <td>30</td>
-    <td>$800</td>
-    <td>10</td>
-    <td>Printer</td>
-    <td><button id="editBtn2" class="button">Edit</button>&nbsp &nbsp  <button id = 'delete-button'  onclick = "mydeleteFunction()">Delete</button></td>
-  </tr>
-    <tr>
-    <td>Dell i3</td>
-    <td>50</td>
-    <td>$500</td>
-    <td>10</td>
-    <td>Desktop</td>
-    <td><button id="editBtn3" class="button">Edit</button>&nbsp &nbsp  <button id = 'delete-button' onclick = "mydeleteFunction()" >Delete</button></td>
-  </tr>
-  <tr>
-    <td>Router air</td>
-    <td>60</td>
-    <td>$500</td>
-    <td>10</td>
-    <td>Router</td>
-    <td><button id="editBtn4" class="button">Edit</button>&nbsp &nbsp  <button id = 'delete-button'  onclick = "mydeleteFunction()">Delete</button></td>
-  </tr>
-</table>
+    <button id="modalBtn" class="button" onclick="openModal()" style = 'float:right; margin-right: 138px ;margin-top: -70px'> + Add product</button> 
+ <div id="products_table"> 
+  
+ </div>  
 </section>
-
 
 <!-- The Modal for add products-->
 <div id="simpleModal" class="modal">
@@ -77,11 +37,11 @@
 
     </div>
     <div class="modal-body">
-      <form class="modal_elements">
-        Name<input type="text" name="name" required> <br>
-        Quantity<input type="text" name="quantity" required> <br>
-        Price<input type="text" name="price" required> <br>
-        Min_Quantity<input type="text" name="min_quantity" required><br>
+      <form method = "POST" class="modal_elements">
+        Name<input type="text" name="name" id="name"  required> <br>
+        Quantity<input type="text" name="quantity" id = "qty" required> <br>
+        Price<input type="text" name="price" id="price" required> <br>
+        Min_Quantity<input type="text" name="min_quantity" id="min_qty" required><br>
         Category
         <select id = "category">
           <option value="laptop">Laptop</option>
@@ -89,7 +49,7 @@
           <option value="Routers">Router</option>
           <option value="printer">Printer</option>
         </select>
-        <input type="submit" name="add_product" value="submit" id="submit">
+        <input type="submit" name="add_product" value="submit" id="submit" onclick = "AddProduct(event)">
       </form>
 
     </div>
@@ -110,19 +70,28 @@
       <span class="closeEditBtn">&times;</span>
     </div>
     <div class="Edit-body">
-      <form>
-        Name<input type="text" name="name" value="HP i5"> <br>
-        Quantity<input type="text" name="quantity" value="50"> <br>
-        Price<input type="text" name="price" value="$500"> <br>
-        Min_Quantity<input type="text" name="min_quantity" value="10"><br>
-        Category<input type="text" name="category" value="Laptop"><br>
-        <input type="submit" name="edit_product" value="submit" id="submit">
+      <form method="POST">
+        Name<input type="text" name="name" id="pdt_name"> <br>
+        Quantity<input type="text" name="quantity" id="quantity"> <br>
+        Price<input type="text" name="price" id="px"> <br>
+        Min_Quantity<input type="text" name="min_quantity" id="min_quantity"><br>
+        Category
+        <select id = "cat">
+          <option value="laptop">Laptop</option>
+          <option value="Desktop">Desktop</option>
+          <option value="Routers">Router</option>
+          <option value="printer">Printer</option>
+        </select><br>
+        <input type="hidden" id="pdt_id">
+        <input type="submit" name="edit_product" value="submit" id="submit" onclick="EditProduct(event)">
       </form>
 
-  </div>
+    </div>
 
-</div> 
- <script src="js/myscript.js"></script> 
+  </div> 
+</div>  
+ <script src="js/products.js"></script> 
+
 
 
 </body>
