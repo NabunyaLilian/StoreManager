@@ -123,8 +123,11 @@ To get the test coverage, you type the command below.
 
 * URL Versioning has been used to version this applications endpoint 
 
-* Currently only version:1 is available 
+* Current versions available are:
+* Version 1
+* Version 2
 
 ## Deployment
 
-* The app is deployed on heroku here's the link https://lia-store-manager-app.herokuapp.com/
+* Version 1 is deployed on heroku, access it using this link https://lia-store-manager-app.herokuapp.com/
+* Version 2 is deployed on heroku, also access it using this link https://lilianstoremanager-api.herokuapp.com/
