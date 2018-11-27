@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Admin's page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<header> 
+  <div>
+  
+  <ul>
+  <a href="admin_index.html"><img  src = "img/logo2.png" style="float: left;position: relative;height:60px ;width :200px "></a>
+  <li><a class="active" href="#">Products</a></li>
+  <li><a href="accounts.html">Accounts</a></li>
+  <li><a href="sales.html">Sales</a></li>
+  <li style="float:right"><a href="login.html">Log out</a></li>
+</div>
+  </ul>
+</header>
+  <h1 id = 'heading'>Products</h1> 
+<section>
+    <button id="modalBtn" class="button" onclick="openModal()" style = 'float:right; margin-right: 138px ;margin-top: -70px'> + Add product</button> 
+ <div id="products_table"> 
+  
+ </div>  
+</section>
+
+<!-- The Modal for add products-->
+<div id="simpleModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="closeBtn">&times;</span>
+
+    </div>
+    <div class="modal-body">
+      <form method = "POST" class="modal_elements">
+        Name<input type="text" name="name" id="name"  required> <br>
+        Quantity<input type="text" name="quantity" id = "qty" required> <br>
+        Price<input type="text" name="price" id="price" required> <br>
+        Min_Quantity<input type="text" name="min_quantity" id="min_qty" required><br>
+        Category
+        <select id = "category">
+          <option value="laptop">Laptop</option>
+          <option value="Desktop">Desktop</option>
+          <option value="Routers">Router</option>
+          <option value="printer">Printer</option>
+        </select>
+        <input type="submit" name="add_product" value="submit" id="submit" onclick = "AddProduct(event)">
+      </form>
+
+    </div>
+    <div>
+      
+    </div>
+  </div>
+
+</div>
+
+
+<!-- modal for edit products -->
+<div id="EditModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="closeEditBtn">&times;</span>
+    </div>
+    <div class="Edit-body">
+      <form method="POST">
+        Name<input type="text" name="name" id="pdt_name"> <br>
+        Quantity<input type="text" name="quantity" id="quantity"> <br>
+        Price<input type="text" name="price" id="px"> <br>
+        Min_Quantity<input type="text" name="min_quantity" id="min_quantity"><br>
+        Category
+        <select id = "cat">
+          <option value="laptop">Laptop</option>
+          <option value="Desktop">Desktop</option>
+          <option value="Routers">Router</option>
+          <option value="printer">Printer</option>
+        </select><br>
+        <input type="hidden" id="pdt_id">
+        <input type="submit" name="edit_product" value="submit" id="submit" onclick="EditProduct(event)">
+      </form>
+
+    </div>
+
+  </div> 
+</div>  
+ <script src="js/products.js"></script> 
+
+
+
+</body>
+</html>

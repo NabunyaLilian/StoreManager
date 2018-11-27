@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Admin's page</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<header> 
+  <div>
+  
+  <ul>
+  <a href="admin_index.html"><img  src = "img/logo2.png" style="float: left;position: relative;height:60px ;width :200px "></a>
+  <li><a href="admin_index.html">Products</a></li>
+  <li><a class="active" href="#">Accounts</a></li>
+  <li><a href="sales.html">Sales</a></li>
+  <li style="float:right"><a href="login.html">Log out</a></li>
+</div>
+  </ul>
+</header>
+<section>
+ <div id="users_table">
+
+ </div>
+
+</section>
+<section>
+  <div class="signup">
+    <h1>Create Account</h1><br>
+    <form method="POST">
+      <label>Username</label><input type="text" name="user" id = "username" required><br/>
+      <label>FirstName</label><input type="text" name="firstname" id = "firstname" required><br/>
+      <label>Password</label><input type="password" name="pass" id = "password" required><br/>
+        <label>isAdmin</label><select id = "isadmin">
+          <option value="True">True</option>
+          <option value="False">False</option>
+        </select>
+        <input type="submit" name="login" value="submit" onclick="RegisterUser(event)">
+    </form>
+
+  </div>
+ 
+</section>
+<script src="js/user.js"></script>
+</body>
+</html>
