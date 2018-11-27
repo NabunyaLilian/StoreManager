@@ -1,2 +1,4 @@
 venv
-
+/include
+/lib
+__pycache__
