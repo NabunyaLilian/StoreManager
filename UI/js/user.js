@@ -32,6 +32,7 @@ if(result['Message'] === "Login successful"){
 }
 
 // function to fetch users
+
 fetch('http://127.0.0.1:5000/api/v2/products', {
     method: 'GET',
     headers: {
@@ -95,11 +96,6 @@ fetch('http://127.0.0.1:5000/api/v2/auth/signup',
     return res.json()
 })
 .then(function(result){
-    // if (!result.status == 200){
-    //     throw Error(result.statusText);
-    // }
-    // alert(JSON.stringify(result))
-
     
     if(result['User']['Username'] === Username){
         alert(result['Message'])

@@ -1,3 +1,4 @@
+//method to add sales
 function AddSales(event){
     event.preventDefault();
     var Name = document.getElementById('name').value;

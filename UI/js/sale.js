@@ -1,3 +1,4 @@
+//method for getting sales
 function getSale(event){
     var search = document.getElementById('my_cart')
     alert(search)
@@ -32,7 +33,3 @@ function getSale(event){
 
 }    
 
-// function closeTable(){
-//     table1 = document.getElementById('sales_table')
-//     table1.style.display = 'none';
-// }

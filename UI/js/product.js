@@ -35,6 +35,7 @@ function getProduct(event){
 }    
 
 //Modal for the add Products
+
 // Get the modal
 var modal = document.getElementById('simpleModal');
 

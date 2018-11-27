@@ -233,7 +233,6 @@ function openEdit(product_id, name, quantity, price, min_quantity){
         document.getElementById('px').value = price;
         document.getElementById('min_quantity').value = min_quantity;
 
-
         // alert(product_id)  
         //Modal for edit Products
         var modal2 = document.getElementById('EditModal');

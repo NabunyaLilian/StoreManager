@@ -12,7 +12,6 @@ fetch('http://127.0.0.1:5000/api/v2/products', {
 })
     .then((res) => res.json())
     .then(result => {
-        // alert(result['Products'].length)
                 var i = 0;
                 var edit = 'editBtn'
                 var products = '<table border="1" >'+
