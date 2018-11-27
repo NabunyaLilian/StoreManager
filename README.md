@@ -74,12 +74,19 @@ API Endpoints currently available are;
 
 |__Http header__| __Endpoint__ | __Functionality__ | 
 |------|-------------|------------|
-|POST|  /api/v1/products       | create a product     |
-|POST| /api/v1/sales           | create a sale order| 
-|GET|  /api/v1/products        | Fetch all products   |
-|GET|  /api/v1/sales           | Fetch all sale orders  |
-|GET|  /api/v1/product/<int:product_id>     | Fetch a single product    |
-|GET|  /api/v1/sale/<int:sale_id>   | Fetch a single sale order  |
+|POST|  /api/v2/products       | create a product     |
+|POST| /api/v2/sales           | create a sale order| 
+|GET|  /api/v2/products        | Fetch all products   |
+|GET|  /api/v2/sales           | Fetch all sale orders  |
+|GET|  /api/v2/product/<int:product_id>     | Fetch a single product    |
+|GET|  /api/v2/sale/<int:sale_id>   | Fetch a single sale order  |
+|PUT|  /api/v2/product/<int:product_id>     | update a single product    |
+|DELETE|  /api/v1/product/<int:product_id>     | delete a single product    |
+|POST| /api/v2/auth/login           | login a user| 
+|POST| /api/v2/auth/signup           | sign up a user| 
+|GET| /api/v2/users           | get all users|
+|PUT| /api/v2/admin/<int:user_id>           | give admin rights|  
+
 
 
 

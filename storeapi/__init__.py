@@ -11,6 +11,8 @@ from storeapi.views.sale_view import SaleView
 from storeapi.views.sales_view import Sales
 from storeapi.views.login import LogIn
 from storeapi.views.signup import SignUp
+from storeapi.views.users import Users
+from storeapi.views.admin import AdminRights
 from flask_cors import CORS
 import sys
 import os.path
@@ -19,6 +21,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 app = Flask(__name__)
 CORS(app)
+
 app.config['JWT_SECRET_KEY'] = 'secret_storeapi_key'
 jwt = JWTManager(app)
 api = Api(app)
@@ -27,10 +30,11 @@ api = Api(app)
 api.add_resource(Product, '/api/v2/product/<int:product_id>')
 api.add_resource(ProductList, '/api/v2/products')
 
-api.add_resource(SaleView, '/api/v2/sale/<int:sale_id>')
+api.add_resource(SaleView, '/api/v2/sale/<int:user_id>')
 api.add_resource(Sales, '/api/v2/sales')
 api.add_resource(SignUp, '/api/v2/auth/signup') 
 api.add_resource(LogIn, '/api/v2/auth/login')
-
+api.add_resource(Users, '/api/v2/users')
+api.add_resource(AdminRights, '/api/v2/admin/<int:user_id>')
 
 
