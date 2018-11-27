@@ -19,26 +19,16 @@
   <h1 id = 'heading'>My cart</h1> 
 <section>
  <form id="my_cart" style="width:100%">
-  <input type="text" placeholder="Search Product" name="search" style="width:30%">
-  <input type ="image" src="img/search.png" alt = 'submit' width="30" height="30" name="search-button"> 
- </form> 
- <table>
-  <tr>
-    <th>Name</th>
-    <th>Quantity</th>
-    <th>Price</th>
-    <th>Minimum Quantity</th>
-    <th>Options</th>
-  </tr>
-  <tr>
-    <td>Laptops</td>
-    <td>50</td>
-    <td>$500</td>
-    <td>10</td>
-    <td><button id="modalBtn" class="button">Sell Product</button></td>
-  </tr>
+  <!-- <input type="number" placeholder="Search Product" name="search" style="width:30%">
+  <input type ="image" src="img/search.png" alt = 'submit' width="30" height="30" name="search-button">  -->
+  <input type="number" placeholder="Search products by id" id="cart_value" value=2 name="search" style="float:left;width:15%;height: 30px;" >
+  <input type ="image" src="img/search.png" alt = 'submit' width="30" height="30" name="search-button" onclick="getProduct(event)">
+ </form>
+ 
+ <div id="product_table">
 
 
+ </div>
   <!-- The Modal for adding to cart-->
 <div id="simpleModal" class="modal">
 
@@ -49,16 +39,18 @@
     </div>
     <div class="modal-body">
       <form>
-        Name<input type="text" name="name" required> <br>
-        Quantity<input type="text" name="quantity" required> <br>
-        Price<input type="text" name="price" required> <br>
-        <input type="submit" name="add_product" value="Add to Cart" id="submit">
+        Name<input type="text" name="name" id = "name" required> <br>
+        Quantity<input type="text" name="quantity" id="qty" required> <br>
+        Date<input type="text" name="date"  id ="date" required> <br>
+        <input type="submit" name="add_product" value="Add to Cart" id="submit" onclick="AddSales(event)">
       </form>
     </div>
   </div>
 
 </div> 
-<script src="js/myscript.js"></script> 
+<!-- <script src="js/myscript.js"></script>  -->
+<script src="js/product.js"></script> 
+<script src="js/sales.js"></script>
 
 </body>
 </html>

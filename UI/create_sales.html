@@ -4,7 +4,7 @@
 	<title>Admin's page</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
-<body>
+<body onload="getSale(event)">
 <header> 
   <div>
   
@@ -19,63 +19,10 @@
 </header>
   <h1 id = 'heading'>Sales Records</h1> 
 <section>
- <table style="margin-top: 20px">
-  <button id="modalBtn" class="button" style = 'float:right; margin-right: 138px ;margin-top: -70px'> Create a sale record</button>
-  <tr>
-    <th>Name</th>
-    <th>Quantity</th>
-    <th>Price</th>
-    <th>Date</th>
-  </tr>
-  <tr>
-    <td>Laptops</td>
-    <td>50</td>
-    <td>$500</td>
-    <td>11/10/2018</td>
-  </tr>
-  <tr>
-    <td>Printers</td>
-    <td>30</td>
-    <td>$800</td>
-    <td>11/10/2018</td>
-  </tr>
-    <tr>
-    <td>Desktops</td>
-    <td>50</td>
-    <td>$500</td>
-    <td>11/10/2018</td>
-  </tr>
-  <tr>
-    <td>Routers</td>
-    <td>60</td>
-    <td>$500</td>
-    <td>11/10/2018</td>
-  </tr>
-</table>
+ <div id="sales_table">
+
+ </div>
 </section>
-
-<!-- The Modal for add products-->
-<div id="simpleModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <div class="modal-header">
-      <span class="closeBtn">&times;</span>
-    </div>
-    <div class="modal-body">
-      <form>
-        Name<input type="text" name="name" required> <br>
-        Quantity<input type="text" name="quantity" required> <br>
-        Price<input type="text" name="price" required> <br>
-        Date<input type="text" name="date" required><br>
-        <input type="submit" name="add_product" value="submit" id="submit">
-      </form>
-  </div>
-
-</div>
-
-
-<script src="js/myscript.js"></script>
-
+<script src="js/sale.js"></script>
 </body>
 </html>
