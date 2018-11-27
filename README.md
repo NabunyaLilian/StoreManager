@@ -10,6 +10,8 @@ Store Manager is a web application that helps store owners manage sales and prod
 - Store owner can see sales and can ﬁlter by attendants. 
 - Store owner can add, modify and delete products. 
 
+## Frontend
+- You can access frontend from here https://nabunyalilian.github.io/StoreManager/UI/login.html
 
 ## Getting Started
 
