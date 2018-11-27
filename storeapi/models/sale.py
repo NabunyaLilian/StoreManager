@@ -49,6 +49,13 @@ class Sale:
         dict_cursor.execute(query_string)
         row = dict_cursor.fetchone()
         return row
+    
+    @staticmethod  
+    def get_sale_by_userid(user_id) :
+        query_string = "SELECT * FROM sales WHERE user_id = '{}'".format(user_id)
+        dict_cursor.execute(query_string)
+        all = dict_cursor.fetchall()
+        return all
 
     def validate_data_type(self) :
         a = [self.name,self.date]

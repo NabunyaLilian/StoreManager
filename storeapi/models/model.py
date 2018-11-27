@@ -29,9 +29,19 @@ class User:
         return cursor.execute("INSERT INTO store_users (name, username, password, isAdmin) \
          VALUES (%s, %s, %s, %s)", (self.name, self.username, User.generate_hash(self.password), self.isAdmin))
 
-    def get_all_users(self):
+    @staticmethod
+    def get_all_users():
         dict_cursor.execute("SELECT * FROM store_users")
         return dict_cursor.fetchall()
+
+    def get_storeattendants():
+        dict_cursor.execute("SELECT user_id, name, username FROM store_users WHERE isadmin = 'False' ")
+        return dict_cursor.fetchall()
+    
+    @staticmethod 
+    def admin_rights(att_id):
+        dict_cursor.execute("UPDATE store_users SET isadmin = 'True' WHERE user_id = {}".format(att_id))
+        return True
 
     @staticmethod
     def parse():

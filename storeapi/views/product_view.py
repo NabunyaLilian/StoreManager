@@ -18,7 +18,7 @@ class Product(Resource):
         product = Products.get_product_by_id(product_id)
         if product:
             return {
-                    'Product': product
+                    'Product': [product]
                  }, 200
         return {"Message": "Product not in stock"}, 404
 

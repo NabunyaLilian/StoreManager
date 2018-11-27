@@ -11,14 +11,22 @@ class SaleView(Resource):
        class for sale resource
    """
     @jwt_required
-    def get(self, sale_id):
+    def get(self, user_id):
         """
            method to get a specific sale
         """
         identity = get_jwt_identity()
         if identity['admin_status'] == 'True':
-            sale = Sale.get_sale_by_id(sale_id)
+            sale = Sale.get_sale_by_userid(user_id)
             if sale:
                 return {'Sale': sale}, 200
             else:
                 return {'Error': 'Sale record doesnot exist'}, 404
+        elif identity['user_id'] == user_id:
+            sale = Sale.get_sale_by_userid(user_id)
+            if sale:
+                return {'Sale': sale}, 200
+            else:
+                return {'Error': 'Sale record doesnot exist'}, 404
+        else:
+            return{'Error':'Something went wrong'}

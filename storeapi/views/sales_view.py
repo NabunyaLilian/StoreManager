@@ -34,7 +34,7 @@ class Sales(Resource):
         sale_obj = Sale(name, quantity, date)
         user_identity = get_jwt_identity()
         if user_identity['admin_status'] == 'True':
-            return {"Error": "Access denied"}
+            return {"Error": "Access denied"}, 401
         if sale_obj.check_empty_fields():
             return {"Error": "Field empty field detected, make sure all fields have values"}, 400
         if not sale_obj.search_special_characters():
